@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bashcd "${0%/*}"
 
 FILE="../src/images/aaImages.ts"
 
@@ -12,3 +12,5 @@ DIR=$(echo $d | cut -d / -f 4)
   echo "  }," >> $FILE
 done
 echo "];" >> $FILE
+
+read
