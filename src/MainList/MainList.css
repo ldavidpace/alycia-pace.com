@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1260px;
+  margin: auto;
+}
+
+.thumbnail {
+  height: 295px;
+  width: 295px;
+  margin: 10px;
+  background-size: cover;
+}
