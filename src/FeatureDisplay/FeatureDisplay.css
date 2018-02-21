@@ -1,3 +1,22 @@
+.featured_display{
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured__links{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.featured__links a {
+  padding: 0 5px;
+}
+
 .featured__image {
-  max-width: 80%;
+  max-width: 1000px;
+  max-height: 800px;
+  padding-bottom: 50px;
 }

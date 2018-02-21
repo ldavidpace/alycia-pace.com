@@ -21,8 +21,11 @@ export default class MainList extends React.Component {
                 />
               </Link>
               )
-            )
+            )          
           }
+          <div className="filler"/>
+          <div className="filler"/>
+          <div className="filler"/>
       </div>
     );
   }

@@ -3,8 +3,13 @@
   flex-wrap: wrap;
   max-width: 1260px;
   margin: auto;
+  padding-bottom: 50px;
+  justify-content: center;
 }
-
+.container .filler{
+  height: 295px;
+  width: 0px;
+}
 .thumbnail {
   height: 295px;
   width: 295px;
