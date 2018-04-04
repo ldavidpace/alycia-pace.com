@@ -14,16 +14,32 @@ type FeatureDisplayProps = {
 };
 
 class FeatureDisplay extends React.Component<FeatureDisplayProps> {
+  getPreviousLink(id: string) {
+    let nextFrame = (parseInt(id, 10) - 1);
+    if (nextFrame < 0) {
+      nextFrame = Images.length - 1;
+    }
+    return '/' + nextFrame; 
+  }
+
+  getNextLink(id: string) {
+    let nextFrame = (parseInt(id, 10) + 1);
+    if (nextFrame > Images.length - 1) {
+      nextFrame = 0;
+    }
+    return '/' + nextFrame;
+  }
+
   render() {
     window.scrollTo(0, 0);
     const {match} = this.props;
     return (
       <div className="featured_display">
         <div className="featured__links">
-          <Link to={'/' + (parseInt(match.params.id, 10) - 1)}>
+          <Link to={this.getPreviousLink(match.params.id)}>
             <a>back</a>
           </Link>
-          <Link  to={'/' + (parseInt(match.params.id, 10) + 1)}>
+          <Link  to={this.getNextLink(match.params.id)}>
             <a>next</a>
           </Link>
         </div>

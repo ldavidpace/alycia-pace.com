@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import './MainList.css';
 import Images from '../images/javascriptGenImages';
 export default class MainList extends React.Component {
-  handleClick (index: number) {
-    console.warn('hello', event, this);
-  }
   render () {
     return (
       <div className={'container'}>
@@ -17,7 +14,6 @@ export default class MainList extends React.Component {
                 <div 
                   className={'thumbnail'}
                   style={{backgroundImage: `url(${image.thumbnail}`}}
-                  onClick={this.handleClick.bind({index})}
                 />
               </Link>
               )
