@@ -3,6 +3,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Route,
+  Link,
 } from 'react-router-dom';
 // const logo = require('./logo.svg');
 
@@ -19,7 +20,9 @@ class App extends React.Component<AppProps> {
       <Router>
         <div className="App">
           <header className="App-header">
-            <h1 className="App-title">Alycia Pace</h1>
+            <Link to={'/'} className={'Main-Link'}>
+              <h1 className="App-title">Alycia Pace</h1>
+            </Link>
           </header>
           <Route path={'/:id'} component={FeatureDisplay}/>
           <MainList/>

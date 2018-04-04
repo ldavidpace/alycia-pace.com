@@ -12,6 +12,11 @@
   font-family: "Homemade Apple";
 }
 
+.Main-Link{
+  text-decoration: none;
+  color: black;
+}
+
 .App-title {
   font-size: 3.5em;
 }
