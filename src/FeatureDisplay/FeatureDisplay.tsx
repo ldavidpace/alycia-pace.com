@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as queryString from 'query-string';
+import { parse } from 'qs'
 
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import Images from '../images/javascriptGenImages';
@@ -38,23 +38,23 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
 
   render() {
     window.scrollTo(0, 0);
-    const params = queryString.parse(window.location.search);
-
+    const params = parse(window.location.search);
+    console.log(params);
     const folders = this.getCurrentFolderList(this.props.match.params.view);
-
-    if (!folders[params.id]) return null;
+    const currentId = params['?id'];
+    if (!folders[currentId]) return null;
     return (
       <div className="featured_display">
         <div className="featured__links">
-          <Link to={this.getPreviousLink(params.id)}>
-            <a>back</a>
+          <Link to={this.getPreviousLink(currentId)}>
+            back
           </Link>
-          <Link  to={this.getNextLink(params.id)}>
-            <a>next</a>
+          <Link  to={this.getNextLink(currentId)}>
+            next
           </Link>
         </div>
         {
-          folders[params.id].images.map( (image: string) => 
+          folders[currentId].images.map( (image: string) => 
             <img 
               className="featured__image"
               key={image}
