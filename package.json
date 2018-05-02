@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.3",
     "@types/jquery": "^3.3.1",
+    "@types/qs": "^6.5.1",
     "@types/react-overlays": "^0.8.2",
     "classnames": "^2.2.5",
     "fs": "0.0.1-security",
