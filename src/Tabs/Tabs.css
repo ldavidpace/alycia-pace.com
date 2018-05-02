@@ -1,0 +1,11 @@
+.tabContainer{
+  margin-bottom: 20px;
+}
+.tab {
+  margin: 0px 10px;
+  color: black;
+  text-decoration: none;
+}
+.current.tab{
+  border-bottom: blue 2px solid;
+}

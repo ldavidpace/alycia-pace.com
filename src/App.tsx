@@ -5,9 +5,9 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-// const logo = require('./logo.svg');
 
 import MainList from './MainList';
+import Tabs from './Tabs/Tabs';
 import FeatureDisplay from './FeatureDisplay';
 
 type AppProps = {
@@ -24,8 +24,9 @@ class App extends React.Component<AppProps> {
               <h1 className="App-title">Alycia Pace</h1>
             </Link>
           </header>
-          <Route path={'/:id'} component={FeatureDisplay}/>
-          <MainList/>
+          <Route path={'/:view?'} component={Tabs}/>
+          <Route path={'/:view?'} component={FeatureDisplay}/>
+          <Route path={'/:view?'} component={MainList}/>
         </div>
       </Router>
     );
