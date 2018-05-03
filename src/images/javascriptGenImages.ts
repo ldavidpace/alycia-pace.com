@@ -207,17 +207,17 @@ require('./Other/Kitchen mom/Big .JPG')
 ]
 },
 {
-name: 'Lost in paradise',
-thumbnail: require('./Other/Lost in paradise/Small.JPG'),
-images: [
-require('./Other/Lost in paradise/Big.JPG')
-]
-},
-{
 name: 'Makeup',
 thumbnail: require('./Other/Makeup/Small.JPG'),
 images: [
 require('./Other/Makeup/Big.JPG')
+]
+},
+{
+name: 'Mom Asian',
+thumbnail: require('./Other/Mom Asian/Small.JPG'),
+images: [
+require('./Other/Mom Asian/Big.JPG')
 ]
 },
 {
@@ -246,13 +246,6 @@ name: 'Reading mom',
 thumbnail: require('./Other/Reading mom/Small.JPG'),
 images: [
 require('./Other/Reading mom/Big.JPG')
-]
-},
-{
-name: 'Real boho mom',
-thumbnail: require('./Other/Real boho mom/Small.JPG'),
-images: [
-require('./Other/Real boho mom/Big.JPG')
 ]
 },
 {
