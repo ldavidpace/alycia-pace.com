@@ -1,0 +1,15 @@
+.contactImage {
+  height: 300px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.contactBlurb {
+  max-width: 80%;
+  margin: auto;
+  padding: 10px;
+}
+
+.email {
+  
+}

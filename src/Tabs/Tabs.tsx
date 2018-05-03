@@ -25,6 +25,9 @@ class Tabs extends React.Component<RouteComponentProps<MatchProps>> {
           </span>
         )
       }
+      <Link to={`/contact`} className={cx({current: view === 'contact'}, "tab")}>
+        Contact
+      </Link>
     </div>
   }
 }
