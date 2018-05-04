@@ -1,7 +1,13 @@
 import * as React from 'react';
-import { parse } from 'qs'
+import { createPortal } from 'react-dom';
+import * as $ from 'jquery';
 
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import PictureShow from '../PictureShow';
+
+import history from '../history';
+// import { parse } from 'qs'
+
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import Images from '../images/javascriptGenImages';
 import './FeatureDisplay.css';
 
@@ -25,6 +31,26 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
     }
     return '?id=' + nextFrame;
   }
+  node = $(`<div id="modalContainer"></div>`);
+  componentWillMount() {
+    $('body').append(this.node);
+    window.addEventListener('keyup', this.handleKeyPress);
+  }
+
+  componentWillUnmount() {
+    this.node.remove();
+    window.removeEventListener('keyup', this.handleKeyPress);
+  }
+
+  handleHide = () => {
+    this.props.history.push('/');
+  }
+
+  handleKeyPress = (event: KeyboardEvent) => {
+    if(event.keyCode === 27){
+      this.handleHide();
+    }
+  }
   getCurrentFolderList(view: string) {
     const folder = Images.find( folder => folder.name === this.props.match.params.view)
       
@@ -35,35 +61,59 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
     return files;
   }
 
+  handleClose = () => {
+    if (history.replace){
+      history.replace(window.location.pathname + window.location.search);
+    } else {
+      window.location.href = window.location.href.split('#')[0];
+    }
+  }
 
   render() {
     window.scrollTo(0, 0);
-    const params = parse(window.location.search);
-    console.log(params);
+    const currentId = window.location.hash.substr(1);
     const folders = this.getCurrentFolderList(this.props.match.params.view);
-    const currentId = params['?id'];
+    
     if (!folders[currentId]) return null;
-    return (
-      <div className="featured_display">
-        <div className="featured__links">
-          <Link to={this.getPreviousLink(currentId)}>
-            back
-          </Link>
-          <Link  to={this.getNextLink(currentId)}>
-            next
-          </Link>
-        </div>
-        {
-          folders[currentId].images.map( (image: string) => 
-            <img 
-              className="featured__image"
-              key={image}
-              src={image}
-            />
-          )
-        }
-      </div>
-    );
+    return createPortal(<div className={'Modal-Backdrop'}>
+        <div className={'Modal-Close'} onClick={this.handleClose}>x</div>
+        <PictureShow folderContents={folders[currentId]}/>
+      </div>, this.node[0]);
+    // return (
+    //   <div className="featured_display">
+    //     <div className="featured__links">
+    //       <Link to={this.getPreviousLink(currentId)}>
+    //         back
+    //       </Link>
+    //       <Link  to={this.getNextLink(currentId)}>
+    //         next
+    //       </Link>
+    //     </div>
+    //     {
+    //       folders[currentId].images.map( (image: string) => 
+    //         <img 
+    //           className="featured__image"
+    //           key={image}
+    //           src={image}
+    //         />
+    //       )
+    //     }
+    //   </div>
+    // )
+
+            
+          // <Modal
+          //   onEnter={this.modalOpen}
+          //   onHide={this.handleHide}
+          //   show={this.state.open}
+          //   backdrop={true}
+          //   backdropClassName={'Modal-Backdrop'}
+          // >
+          //   {/* <div className={'Modal-Contents'}> */}
+          //     <PictureShow/>
+          //   {/* </div> */}
+          // </Modal>
+
   }
 }
 

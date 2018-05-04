@@ -24,8 +24,8 @@ class MainList extends React.Component<RouteComponentProps<matchProps>> {
           {
             files.map((image, index) =>
             (
-              <Link to={'?id='+index} key={index}>
-                <div 
+              <Link to={'#'+index} key={index} replace>
+                <div
                   className={'thumbnail'}
                   style={{backgroundImage: `url(${image.thumbnail}`}}
                 />

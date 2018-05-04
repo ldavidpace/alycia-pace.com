@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Link,
 } from 'react-router-dom';
@@ -10,6 +10,8 @@ import MainList from './MainList';
 import Tabs from './Tabs/Tabs';
 import FeatureDisplay from './FeatureDisplay';
 
+import history from './history';
+
 type AppProps = {
 
 };
@@ -17,7 +19,7 @@ type AppProps = {
 class App extends React.Component<AppProps> {
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className="App">
           <header className="App-header">
             <Link to={'/'} className={'Main-Link'}>

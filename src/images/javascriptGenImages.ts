@@ -40,7 +40,7 @@ require('./Children’s Books/Jesus king of kings/IMG_4228.JPG')
 name: 'Little red',
 thumbnail: require('./Children’s Books/Little red/Small.JPG'),
 images: [
-require('./Children’s Books/Little red/Big .JPG'),
+require('./Children’s Books/Little red/Big.JPG'),
 require('./Children’s Books/Little red/IMG_3584.JPG'),
 require('./Children’s Books/Little red/IMG_3582.JPG')
 ]
