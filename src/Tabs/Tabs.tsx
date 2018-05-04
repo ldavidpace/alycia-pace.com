@@ -16,13 +16,11 @@ class Tabs extends React.Component<RouteComponentProps<MatchProps>> {
     return <div className={'tabContainer'}>
       {
         tabs.map(tab =>
-          <span key={tab}>
-            <Link to={`/${tab}`} className={cx({current: view === tab}, "tab")}>
+            <Link  key={tab} to={`/${tab}`} className={cx({current: view === tab}, "tab")}>
               <span>
                 {tab}
               </span>
             </Link>
-          </span>
         )
       }
       <Link to={`/contact`} className={cx({current: view === 'contact'}, "tab")}>

@@ -2,10 +2,18 @@
   margin-bottom: 20px;
 }
 .tab {
-  margin: 0px 10px;
+  margin: 10px 10px;
   color: black;
   text-decoration: none;
 }
 .current.tab{
   border-bottom: blue 2px solid;
+}
+
+@media screen and (max-width: 500px) {
+  .tabContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
