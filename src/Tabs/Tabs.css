@@ -12,8 +12,6 @@
 
 @media screen and (max-width: 500px) {
   .tabContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: none;
   }
 }
