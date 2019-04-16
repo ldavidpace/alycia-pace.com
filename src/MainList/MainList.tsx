@@ -5,6 +5,8 @@ import ContactPage from '../ContactPage';
 import './MainList.css';
 import Images from '../images/javascriptGenImages';
 
+import Analytics from '../Analytics';
+
 type matchProps = {
   view: string;
 }
@@ -24,7 +26,7 @@ class MainList extends React.Component<RouteComponentProps<matchProps>> {
           {
             files.map((image, index) =>
             (
-              <Link to={'#'+index} key={index} replace>
+              <Link to={'#'+index} key={index} replace onClick={() => Analytics.track('pictureClick', {id: image.name})}>
                 <div
                   className={'thumbnail'}
                   style={{backgroundImage: `url(${image.thumbnail}`}}

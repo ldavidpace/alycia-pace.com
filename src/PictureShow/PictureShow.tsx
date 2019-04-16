@@ -4,6 +4,7 @@ import './PictureShow.css';
 import * as cx from 'classnames';
 
 import { setUpSwipe, directions } from './swipeUtility';
+import Analytics from '../Analytics';
 
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
@@ -47,6 +48,7 @@ class PictureShow extends React.Component<PictureShowProps> {
       nextPicture = this.props.folderContents.images.length - 1;
     }
     this.setState({number: nextPicture});
+    Analytics.track('PictureShowLeft');
   }
 
   handleRight = () => {
@@ -55,10 +57,12 @@ class PictureShow extends React.Component<PictureShowProps> {
       nextPicture = 0;
     }
     this.setState({number: nextPicture});
+    Analytics.track('PictureShowRight');
   }
 
   dotClick = (index:number) => {
     this.setState({number: index});
+    Analytics.track('Dot_Click', {id: index});
   }
 
   render() {
@@ -77,10 +81,10 @@ class PictureShow extends React.Component<PictureShowProps> {
           <div className={'dotContainer'}>
             {  this.props.folderContents.images.length > 1 && 
               this.props.folderContents.images.map((image: Object, index: number) => {
-                return <div 
+                return <div
                   key={index}
                   className={cx('dot', {selected: this.state.number === index })}
-                  style={{backgroundImage: `url(${image})`}} 
+                  style={{backgroundImage: `url(${image})`}}
                   onClick={this.dotClick.bind(this, index)}
                 ></div>
               })

@@ -2,6 +2,8 @@ import * as React from 'react';
 import imagesFolderDef from '../images/javascriptGenImages';
 import * as cx from 'classnames';
 import {Link, RouteComponentProps, withRouter} from 'react-router-dom';
+import Analytics from '../Analytics';
+
 require('./Tabs.css');
 
 type MatchProps = {
@@ -16,14 +18,14 @@ class Tabs extends React.Component<RouteComponentProps<MatchProps>> {
     return <div className={'tabContainer'}>
       {
         tabs.map(tab =>
-            <Link  key={tab} to={`/${tab}`} className={cx({current: view === tab}, "tab")}>
+            <Link  key={tab} to={`/${tab}`} className={cx({current: view === tab}, "tab")} onClick={() => Analytics.track('navigate', {id: tab})}>
               <span>
                 {tab}
               </span>
             </Link>
         )
       }
-      <Link to={`/contact`} className={cx({current: view === 'contact'}, "tab")}>
+      <Link to={`/contact`} className={cx({current: view === 'contact'}, "tab")} onClick={() => Analytics.track('navigate', {id: 'contact'})}>
         Contact
       </Link>
     </div>

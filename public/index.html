@@ -46,6 +46,14 @@
 
       gtag('config', 'UA-117093051-1');
     </script>
+    <!--Domo-analytics -->
+    <script async src="./analytics.js"></script>
+    <script>
+      window.Analytics = window.Analytics || {
+        track: () => {},
+        windowLoadTime: new Date().getTime(),
+      }
+    </script>
 
   </body>
 </html>
