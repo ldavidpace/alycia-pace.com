@@ -26,6 +26,7 @@ var Analytics = Object.assign(Analytics, {
     values = values || {};
     analyticsQueue.push({
       event: key,
+      url: window.location.href,
       ...globalKeys,
       ...values,
     });
