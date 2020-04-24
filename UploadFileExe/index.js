@@ -27,14 +27,19 @@ module.exports = async (destinationPath) => {
   }
 
   await new Promise((resolve) => ncp(process.argv[2], path.resolve(destinationPath, 'src/images'), (err) => {
-    if (err){ 
+    if (err) { 
       console.error(err);
       return;
     }
     resolve();
   }));
 
-  cmd.get(`cd ${destinationPath}`);
+  const output = await new Promise((resolve) => cmd.get(`
+    cd ${destinationPath}
+    npm run images
+  `, (stdout) => {
+    resolve(stdout);
+  }));
   console.log("Current Directory", __dirname);
 
   const answer = await askQuestion("We are finished. Just press enter");

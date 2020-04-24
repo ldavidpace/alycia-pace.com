@@ -4,8 +4,6 @@ let output = 'export default [';
 const files = fs.readdirSync(imagesFolder);
 const shrink = require('./shrinkImage');
 
-console.log(shrink);
-
 files.forEach((file) => {
   const folderPath = imagesFolder + '/' + file; 
   const stat = fs.statSync(folderPath);
@@ -60,9 +58,9 @@ async function getStructForImageFolder(parentFile, file) {
       console.log('brokend', file);
     }
 
-    await shrink(folderPath + '/' + imgStats[0].name, folderPath + '/' + 'thumbnail.png').then(() => {}).catch(() => {console.log('Something went wrong writing', file)});
-    output += '\nthumbnail: require(\'./' + parentFile + '/' + file +'/thumbnail.png\'),';
-    output += '\nimages: [' + imgStats.filter(image => !img.name.toLowerCase().includes('small')).map(imgStat => '\nrequire(\'./' + parentFile + '/' + imgStat.url.substr(2) + '\')').join() + '\n]',
+    await shrink(folderPath + '/' + imgStats[0].name, folderPath + '/' + 'thumbnail.jpg').then(() => {process.stdout.write('.')}).catch(() => {console.log('Something went wrong writing', file)});
+    output += '\nthumbnail: require(\'./' + parentFile + '/' + file +'/thumbnail.jpg\'),';
+    output += '\nimages: [' + imgStats.filter(image => !image.name.toLowerCase().includes('small')).map(imgStat => '\nrequire(\'./' + parentFile + '/' + imgStat.url.substr(2) + '\')').join() + '\n]',
     output += '\n},';
   }
   return output;
