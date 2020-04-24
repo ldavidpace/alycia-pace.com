@@ -1,5 +1,11 @@
 
-html, body{
+:global( html ){
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+:global( body ) {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -38,7 +44,7 @@ html, body{
   to { transform: rotate(360deg); }
 }
 
-#root {
+:global(#root) {
   height: 100%;
   width: 100%;
   overflow-y: auto;

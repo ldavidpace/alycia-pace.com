@@ -2,8 +2,10 @@ import * as React from 'react';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import ContactPage from '../ContactPage';
 
-import './MainList.css';
 import Images from '../images/javascriptGenImages';
+import * as styles from './MainList.module.css';
+
+console.log(styles);
 
 import Analytics from '../Analytics';
 
@@ -22,22 +24,24 @@ class MainList extends React.Component<RouteComponentProps<matchProps>> {
         return [...acc, ...folder.contents];
       }, []);
     return (
-      <div className={'container'}>
+      <div className={styles.container}>
           {
             files.map((image, index) =>
             (
-              <Link to={'#'+index} key={index} replace onClick={() => Analytics.track('pictureClick', {id: image.name})}>
-                <div
-                  className={'thumbnail'}
-                  style={{backgroundImage: `url(${image.thumbnail}`}}
-                />
-              </Link>
+              <div className={styles.imageLink}>
+                <Link to={'#'+index} key={index} replace  onClick={() => Analytics.track('pictureClick', {id: image.name})}>
+                  <div
+                    className={styles.thumbnail}
+                    style={{backgroundImage: `url(${image.thumbnail}`}}
+                  />
+                </Link>
+              </div>
               )
             )          
           }
-          <div className="filler"/>
-          <div className="filler"/>
-          <div className="filler"/>
+          <div className={styles.filler}/>
+          <div className={styles.filler}/>
+          <div className={styles.filler}/>
       </div>
     );
   }

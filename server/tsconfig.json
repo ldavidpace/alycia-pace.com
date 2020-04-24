@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "../dist",
+    "skipDefaultLibCheck": true
+  },
+  "lib": ["es2015", "es2018"],
+  "include": ["**/*"]
+}

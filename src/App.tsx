@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './App.css';
 import {
   Router,
   Route,
@@ -13,6 +12,8 @@ import Analytics from './Analytics';
 
 import history from './history';
 
+import * as styles from './App.module.css';
+
 type AppProps = {
 
 };
@@ -21,10 +22,10 @@ class App extends React.Component<AppProps> {
   render() {
     return (
       <Router history={history}>
-        <div className="App">
-          <header className="App-header">
-            <Link to={'/'} className={'Main-Link'} onClick={() => Analytics.track('navigate', {id: 'MainLink'})}>
-              <h1 className="App-title">Alycia Pace</h1>
+        <div className={styles.App}>
+          <header className={styles["App-header"]}>
+            <Link to={'/'} className={styles['Main-Link']} onClick={() => Analytics.track('navigate', {id: 'MainLink'})}>
+              <h1 className={styles["App-title"]}>Alycia Pace</h1>
             </Link>
           </header>
           <Route path={'/:view?'} component={Tabs} />

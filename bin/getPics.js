@@ -2,6 +2,9 @@ const fs = require('fs');
 const imagesFolder = './src/images'; 
 let output = 'export default [';
 const files = fs.readdirSync(imagesFolder);
+const shrink = require('./shrinkImage');
+
+console.log(shrink);
 
 files.forEach((file) => {
   const folderPath = imagesFolder + '/' + file; 
@@ -27,7 +30,7 @@ fs.writeFile(imagesFolder + '/javascriptGenImages.ts', output, (error) => {
   }
 });
 
-function getStructForImageFolder(parentFile, file) {
+async function getStructForImageFolder(parentFile, file) {
   if(!parentFile || !file) return '';
   let output = '';
   const folderPath = imagesFolder + '/' + parentFile + '/' + file; 
@@ -56,9 +59,10 @@ function getStructForImageFolder(parentFile, file) {
     if(imgStats[0].name.toLowerCase() !== 'small.jpg'){
       console.log('brokend', file);
     }
-    console.log(imgStats);
-    output += '\nthumbnail: require(\'./' + parentFile + '/' + imgStats[0].url.substr(2) + '\'),';
-    output += '\nimages: [' + imgStats.filter((imgStat,index) => index !== 0).map(imgStat => '\nrequire(\'./' + parentFile + '/' + imgStat.url.substr(2) + '\')').join() + '\n]',
+
+    await shrink(folderPath + '/' + imgStats[0].name, folderPath + '/' + 'thumbnail.png').then(() => {}).catch(() => {console.log('Something went wrong writing', file)});
+    output += '\nthumbnail: require(\'./' + parentFile + '/' + file +'/thumbnail.png\'),';
+    output += '\nimages: [' + imgStats.filter(image => !img.name.toLowerCase().includes('small')).map(imgStat => '\nrequire(\'./' + parentFile + '/' + imgStat.url.substr(2) + '\')').join() + '\n]',
     output += '\n},';
   }
   return output;
