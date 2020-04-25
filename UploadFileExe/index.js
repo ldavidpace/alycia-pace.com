@@ -64,7 +64,6 @@ module.exports = async (destinationPath) => {
   
     genImageFile(imgeFolderDest);
     
-    
     const answer = await askQuestion("We are finished. Just press enter and wait for the window to close");
     console.log(answer);
   } catch(err) {
