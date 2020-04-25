@@ -67,13 +67,13 @@ measureFileSizesBeforeBuild(paths.appBuild)
   .then(async (previousFileSizes) => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
-    console.log('before empty');
-    await deleteFolderRecursive(paths.appBuild, true);
+    if (env !== 'dev') {
+      await deleteFolderRecursive(paths.appBuild, true);
+    }
     
-    console.log('after empty');
     // Merge with the public folder
     copyPublicFolder();
-    console.log('afterpublic copy');
+
     // Start the webpack build
     return build(previousFileSizes);
   })

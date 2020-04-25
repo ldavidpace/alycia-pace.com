@@ -49,6 +49,7 @@ require('./Children’s Books/C Polly/IMG_1679.JPG')
 name: 'D beach',
 thumbnail: require('./Children’s Books/D beach/thumbnail.jpg'),
 images: [
+require('./Children’s Books/D beach/Big.JPG')
 ]
 },
 {

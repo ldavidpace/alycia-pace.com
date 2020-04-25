@@ -28,8 +28,12 @@ class MainList extends React.Component<RouteComponentProps<matchProps>> {
           {
             files.map((image, index) =>
             (
-              <div className={styles.imageLink}>
-                <Link to={'#'+index} key={index} replace  onClick={() => Analytics.track('pictureClick', {id: image.name})}>
+              <div className={styles.imageLink} key={index}>
+                <Link to={'#'+index} key={index} replace  onClick={() => {
+                  Analytics.track('pictureClick', {id: image.name}); 
+                  const root = document.querySelector('#root');
+                  root && root.scrollTo(0,0);
+                }}>
                   <div
                     className={styles.thumbnail}
                     style={{backgroundImage: `url(${image.thumbnail}`}}

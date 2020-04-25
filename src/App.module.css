@@ -33,7 +33,16 @@
 .App-title {
   font-size: 3.5em;
   margin-bottom: 0px;
+  margin-top: 0;
 }
+
+
+@media (max-width: 525px) {
+  .App-title {
+    font-size: 2em;
+  }
+}
+
 
 .App-intro {
   font-size: large;

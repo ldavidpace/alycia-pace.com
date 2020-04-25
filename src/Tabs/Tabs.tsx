@@ -4,30 +4,51 @@ import * as cx from 'classnames';
 import {Link, RouteComponentProps, withRouter} from 'react-router-dom';
 import Analytics from '../Analytics';
 
-require('./Tabs.css');
+const styles = require('./Tabs.module.css');
 
 type MatchProps = {
   view: string;
 }
 
-class Tabs extends React.Component<RouteComponentProps<MatchProps>> {
+type TabState = {
+  open: boolean
+}
+class Tabs extends React.Component<RouteComponentProps<MatchProps>, TabState> {
+  state = {
+    open: false,
+  }
+  
+  handleMenuClick = () => {
+    this.setState({open: !this.state.open});
+  }
+
   render() {
+    const {open} = this.state;
     const view = this.props.match.params.view;
     const tabs = imagesFolderDef.filter((folder) => folder.name.toLowerCase() !== 'other').map((folder) => folder.name);
 
-    return <div className={'tabContainer'}>
-      {
-        tabs.map(tab =>
-            <Link  key={tab} to={`/${tab}`} className={cx({current: view === tab}, "tab")} onClick={() => Analytics.track('navigate', {id: tab})}>
+    return <div>
+      <div className={cx(styles.menuButton, {[styles.open]: open})} onClick={this.handleMenuClick}>Menu</div>
+      <div className={styles.hidden}></div>
+      <div className={cx(styles.tabContainer, {[styles.hidden]: !open})}>
+      <Link  to={`/`} className={cx({[styles.current]: !view}, styles.tab)} onClick={() => Analytics.track('navigate', {id: 'all'})}>
+        <span>
+          Home
+        </span>
+      </Link>
+        {
+          tabs.map(tab =>
+            <Link  key={tab} to={`/${tab}`} className={cx({[styles.current]: view === tab}, styles.tab)} onClick={() => Analytics.track('navigate', {id: tab})}>
               <span>
                 {tab}
               </span>
             </Link>
-        )
-      }
-      <Link to={`/contact`} className={cx({current: view === 'contact'}, "tab")} onClick={() => Analytics.track('navigate', {id: 'contact'})}>
-        Contact
-      </Link>
+          )
+        }
+        <Link to={`/contact`} className={cx({[styles.current]: view === 'contact'}, styles.tab)} onClick={() => Analytics.track('navigate', {id: 'contact'})}>
+          Contact
+        </Link>
+      </div>
     </div>
   }
 }

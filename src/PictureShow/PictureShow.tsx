@@ -13,6 +13,8 @@ interface SyntheticEvent<T> {
 
 type PictureShowProps = {
   folderContents: any;
+  currentId: string;
+  folderCount: number;
 };
 
 class PictureShow extends React.Component<PictureShowProps> {
@@ -45,7 +47,7 @@ class PictureShow extends React.Component<PictureShowProps> {
   handleLeft = () => {
     let nextPicture = --this.state.number;
     if (nextPicture < 0) {
-      nextPicture = this.props.folderContents.images.length - 1;
+      window.location.hash = `#${(parseInt(this.props.currentId) - 1 + this.props.folderCount) % this.props.folderCount}`
     }
     this.setState({number: nextPicture});
     Analytics.track('PictureShowLeft');
@@ -54,7 +56,7 @@ class PictureShow extends React.Component<PictureShowProps> {
   handleRight = () => {
     let nextPicture = ++this.state.number;
     if (this.props.folderContents.images.length <= nextPicture) {
-      nextPicture = 0;
+      window.location.hash = `#${(parseInt(this.props.currentId) + 1 % this.props.folderCount)}`
     }
     this.setState({number: nextPicture});
     Analytics.track('PictureShowRight');
@@ -70,8 +72,7 @@ class PictureShow extends React.Component<PictureShowProps> {
     console.log(this.props.folderContents);
     return (
       <div ref={ref => this.node = ref} className="PictureShowContainer" onClick={this.onClick}>
-        { this.props.folderContents.images.length > 1 && 
-            <div className="pictureShowNav left" onClick={this.handleLeft}>&lt;</div>}
+        <div className="pictureShowNav left" onClick={this.handleLeft}>&lt;</div>
         <div className="PictureShowCenterContainer">
           <div className="pictureContainer">
             <div 
@@ -91,10 +92,7 @@ class PictureShow extends React.Component<PictureShowProps> {
             }
           </div>
         </div>
-        { 
-          this.props.folderContents.images.length > 1 &&
-            <div className="pictureShowNav right" onClick={this.handleRight}>&gt;</div>
-        }
+        <div className="pictureShowNav right" onClick={this.handleRight}>&gt;</div>
       </div>
     );
   }

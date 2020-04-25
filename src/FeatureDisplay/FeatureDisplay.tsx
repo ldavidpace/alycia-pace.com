@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { createPortal } from 'react-dom';
+// import { createPortal } from 'react-dom';
 import * as $ from 'jquery';
 
-import PictureShow from '../PictureShow';
+// import PictureShow from '../PictureShow';
 
 import history from '../history';
+import Analytics from '../Analytics';
 // import { parse } from 'qs'
 
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 import Images from '../images/javascriptGenImages';
 import './FeatureDisplay.css';
 
@@ -21,7 +22,7 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
     if (nextFrame < 0) {
       nextFrame = this.getCurrentFolderList(this.props.match.params.view).length - 1;
     }
-    return '?id=' + nextFrame; 
+    return '#' + nextFrame;
   }
 
   getNextLink(id: string) {
@@ -29,7 +30,7 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
     if (nextFrame > this.getCurrentFolderList(this.props.match.params.view).length - 1) {
       nextFrame = 0;
     }
-    return '?id=' + nextFrame;
+    return '#' + nextFrame;
   }
   node = $(`<div id="modalContainer"></div>`);
   componentWillMount() {
@@ -47,22 +48,23 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
   }
 
   handleKeyPress = (event: KeyboardEvent) => {
-    if(event.keyCode === 27){
+    if (event.keyCode === 27) {
       this.handleHide();
     }
   }
+
   getCurrentFolderList(view: string) {
-    const folder = Images.find( folder => folder.name === this.props.match.params.view)
-      
-    
-    const files = folder ? folder.contents : Images.reduce( (acc, folder) => {
-        return [...acc, ...folder.contents];
-      }, []);
+    const folder = Images.find(folder => folder.name === this.props.match.params.view)
+
+
+    const files = folder ? folder.contents : Images.reduce((acc, folder) => {
+      return [...acc, ...folder.contents];
+    }, []);
     return files;
   }
 
   handleClose = () => {
-    if (history.replace){
+    if (history.replace) {
       history.replace(window.location.pathname + window.location.search);
     } else {
       window.location.href = window.location.href.split('#')[0];
@@ -70,49 +72,56 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
   }
 
   render() {
-    window.scrollTo(0, 0);
     const currentId = window.location.hash.substr(1);
     const folders = this.getCurrentFolderList(this.props.match.params.view);
-    
-    if (!folders[currentId]) return null;
-    return createPortal(<div className={'Modal-Backdrop'}>
-        <div className={'Modal-Close'} onClick={this.handleClose}>x</div>
-        <PictureShow folderContents={folders[currentId]}/>
-      </div>, this.node[0]);
-    // return (
-    //   <div className="featured_display">
-    //     <div className="featured__links">
-    //       <Link to={this.getPreviousLink(currentId)}>
-    //         back
-    //       </Link>
-    //       <Link  to={this.getNextLink(currentId)}>
-    //         next
-    //       </Link>
-    //     </div>
-    //     {
-    //       folders[currentId].images.map( (image: string) => 
-    //         <img 
-    //           className="featured__image"
-    //           key={image}
-    //           src={image}
-    //         />
-    //       )
-    //     }
-    //   </div>
-    // )
 
-            
-          // <Modal
-          //   onEnter={this.modalOpen}
-          //   onHide={this.handleHide}
-          //   show={this.state.open}
-          //   backdrop={true}
-          //   backdropClassName={'Modal-Backdrop'}
-          // >
-          //   {/* <div className={'Modal-Contents'}> */}
-          //     <PictureShow/>
-          //   {/* </div> */}
-          // </Modal>
+    if (!folders[currentId]) return null;
+    // return createPortal(<div className={'Modal-Backdrop'}>
+    //     <div className={'Modal-Close'} onClick={this.handleClose}>x</div>
+    //     <PictureShow folderContents={folders[currentId]} currentId={currentId} folderCount={folders.length}/>
+    //   </div>, this.node[0]);
+    return (
+      <div className="featured_display">
+        {
+          folders[currentId].images.map((image: string) =>
+            <img
+              className="featured__image"
+              key={image}
+              src={image}
+            />
+          )
+        }
+        <div className="featured__links">
+          <Link to={this.getPreviousLink(currentId)} onClick={() => {
+            Analytics.track('featurePreviousClick');
+            const root = document.querySelector('#root');
+            root && root.scrollTo(0,0);
+          }}>
+            back
+          </Link>
+          <Link to={this.getNextLink(currentId)} onClick={() => {
+            Analytics.track('featureNextClick');
+            const root = document.querySelector('#root');
+            root && root.scrollTo(0,0);
+          }}>
+            next
+          </Link>
+        </div>
+      </div>
+    )
+
+
+    // <Modal
+    //   onEnter={this.modalOpen}
+    //   onHide={this.handleHide}
+    //   show={this.state.open}
+    //   backdrop={true}
+    //   backdropClassName={'Modal-Backdrop'}
+    // >
+    //   {/* <div className={'Modal-Contents'}> */}
+    //     <PictureShow/>
+    //   {/* </div> */}
+    // </Modal>
 
   }
 }

@@ -1,5 +1,10 @@
+.contactContainer {
+  padding-bottom: 40px;
+}
+
 .contactImage {
-  height: 300px;
+  width: 450px;
+  max-width: 100%;
   margin-top: 30px;
   margin-bottom: 30px;
 }
