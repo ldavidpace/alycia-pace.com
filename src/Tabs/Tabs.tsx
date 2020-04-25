@@ -31,21 +31,21 @@ class Tabs extends React.Component<RouteComponentProps<MatchProps>, TabState> {
       <div className={cx(styles.menuButton, {[styles.open]: open})} onClick={this.handleMenuClick}>Menu</div>
       <div className={styles.hidden}></div>
       <div className={cx(styles.tabContainer, {[styles.hidden]: !open})}>
-      <Link  to={`/`} className={cx({[styles.current]: !view}, styles.tab)} onClick={() => Analytics.track('navigate', {id: 'all'})}>
+      <Link  to={`/`} className={cx({[styles.current]: !view}, styles.tab)} onClick={() => {this.handleMenuClick(); Analytics.track('navigate', {id: 'all'})}}>
         <span>
           Home
         </span>
       </Link>
         {
           tabs.map(tab =>
-            <Link  key={tab} to={`/${tab}`} className={cx({[styles.current]: view === tab}, styles.tab)} onClick={() => Analytics.track('navigate', {id: tab})}>
+            <Link  key={tab} to={`/${tab}`} className={cx({[styles.current]: view === tab}, styles.tab)} onClick={() => {this.handleMenuClick(); Analytics.track('navigate', {id: tab})}}>
               <span>
                 {tab}
               </span>
             </Link>
           )
         }
-        <Link to={`/contact`} className={cx({[styles.current]: view === 'contact'}, styles.tab)} onClick={() => Analytics.track('navigate', {id: 'contact'})}>
+        <Link to={`/contact`} className={cx({[styles.current]: view === 'contact'}, styles.tab)} onClick={() => {this.handleMenuClick(); Analytics.track('navigate', {id: 'contact'})}}>
           Contact
         </Link>
       </div>
