@@ -129,13 +129,6 @@ require('./Children’s Books/Surgery/Big.JPG')
 ]
 },
 {
-name: 'Swiss fam',
-thumbnail: require('./Children’s Books/Swiss fam/thumbnail.jpg'),
-images: [
-require('./Children’s Books/Swiss fam/Big.JPG')
-]
-},
-{
 name: 'Thanksgiving',
 thumbnail: require('./Children’s Books/Thanksgiving/thumbnail.jpg'),
 images: [
@@ -205,13 +198,6 @@ name: 'HugOnABed',
 thumbnail: require('./Other/HugOnABed/thumbnail.jpg'),
 images: [
 require('./Other/HugOnABed/Big.JPG')
-]
-},
-{
-name: 'Skirt mom',
-thumbnail: require('./Other/Skirt mom/thumbnail.jpg'),
-images: [
-require('./Other/Skirt mom/Big.JPG')
 ]
 },
 ]},
