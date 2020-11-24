@@ -1,204 +1,152 @@
 export default [
 {
-name: 'Children’s Books',
+name: 'New folder',
 contents: [
 {
-name: 'Alina',
-thumbnail: require('./Children’s Books/Alina/thumbnail.jpg'),
+name: 'A bear',
+thumbnail: require('./New folder/A bear/thumbnail.jpg'),
 images: [
-require('./Children’s Books/Alina/Big.JPG'),
-require('./Children’s Books/Alina/IMG_1642.JPG')
+require('./New folder/A bear/Big.JPG')
 ]
 },
 {
-name: 'B blue room',
-thumbnail: require('./Children’s Books/B blue room/thumbnail.jpg'),
+name: 'B. Whale nursery',
+thumbnail: require('./New folder/B. Whale nursery/thumbnail.jpg'),
 images: [
-require('./Children’s Books/B blue room/Big.JPG')
+require('./New folder/B. Whale nursery/Big.JPG')
 ]
 },
 {
-name: 'B Dino',
-thumbnail: require('./Children’s Books/B Dino/thumbnail.jpg'),
+name: 'C old ppl',
+thumbnail: require('./New folder/C old ppl/thumbnail.jpg'),
 images: [
-require('./Children’s Books/B Dino/IMG_1638.JPG'),
-require('./Children’s Books/B Dino/Big.JPG'),
-require('./Children’s Books/B Dino/IMG_1639.JPG'),
-require('./Children’s Books/B Dino/IMG_1637.JPG')
+require('./New folder/C old ppl/Big.JPG')
 ]
 },
 {
-name: 'Birthday',
-thumbnail: require('./Children’s Books/Birthday/thumbnail.jpg'),
+name: 'D. Dancing girl room',
+thumbnail: require('./New folder/D. Dancing girl room/thumbnail.jpg'),
 images: [
-require('./Children’s Books/Birthday/Big.JPG')
+require('./New folder/D. Dancing girl room/Big.JPG')
 ]
 },
 {
-name: 'C Polly',
-thumbnail: require('./Children’s Books/C Polly/thumbnail.jpg'),
+name: 'E. Nancy dew',
+thumbnail: require('./New folder/E. Nancy dew/thumbnail.jpg'),
 images: [
-require('./Children’s Books/C Polly/IMG.JPG'),
-require('./Children’s Books/C Polly/Big.JPG'),
-require('./Children’s Books/C Polly/Big(1).JPG'),
-require('./Children’s Books/C Polly/IMG_1680.JPG'),
-require('./Children’s Books/C Polly/IMG_1679.JPG')
+require('./New folder/E. Nancy dew/Big.JPG')
 ]
 },
 {
-name: 'D beach',
-thumbnail: require('./Children’s Books/D beach/thumbnail.jpg'),
+name: 'F Mom',
+thumbnail: require('./New folder/F Mom/thumbnail.jpg'),
 images: [
-require('./Children’s Books/D beach/Big.JPG')
+require('./New folder/F Mom/Big.JPG')
 ]
 },
 {
-name: 'F SmellyCatCover',
-thumbnail: require('./Children’s Books/F SmellyCatCover/thumbnail.jpg'),
+name: 'G class',
+thumbnail: require('./New folder/G class/thumbnail.jpg'),
 images: [
-require('./Children’s Books/F SmellyCatCover/Big.JPG')
+require('./New folder/G class/Big.JPG')
 ]
 },
 {
-name: 'G history',
-thumbnail: require('./Children’s Books/G history/thumbnail.jpg'),
+name: 'H white fox',
+thumbnail: require('./New folder/H white fox/thumbnail.jpg'),
 images: [
-require('./Children’s Books/G history/IMG_1647.JPG'),
-require('./Children’s Books/G history/IMG_1656.JPG'),
-require('./Children’s Books/G history/IMG_1662.JPG'),
-require('./Children’s Books/G history/IMG_1654.JPG'),
-require('./Children’s Books/G history/IMG_1649.JPG'),
-require('./Children’s Books/G history/IMG_1663.JPG'),
-require('./Children’s Books/G history/IMG_1658.JPG'),
-require('./Children’s Books/G history/IMG_1655.JPG'),
-require('./Children’s Books/G history/IMG_1648.JPG'),
-require('./Children’s Books/G history/Big.JPG')
+require('./New folder/H white fox/Big.JPG')
 ]
 },
 {
-name: 'I dream catcher',
-thumbnail: require('./Children’s Books/I dream catcher/thumbnail.jpg'),
+name: 'I bedroom tent',
+thumbnail: require('./New folder/I bedroom tent/thumbnail.jpg'),
 images: [
-require('./Children’s Books/I dream catcher/Big.JPG')
+require('./New folder/I bedroom tent/Big.JPG')
 ]
 },
 {
-name: 'J Christmas angels',
-thumbnail: require('./Children’s Books/J Christmas angels/thumbnail.jpg'),
+name: 'J carousel',
+thumbnail: require('./New folder/J carousel/thumbnail.jpg'),
 images: [
-require('./Children’s Books/J Christmas angels/Big.JPG'),
-require('./Children’s Books/J Christmas angels/IMG_4715.JPG'),
-require('./Children’s Books/J Christmas angels/IMG_4719.JPG')
+require('./New folder/J carousel/Big.JPG')
 ]
 },
 {
-name: 'Jesus king of kings',
-thumbnail: require('./Children’s Books/Jesus king of kings/thumbnail.jpg'),
+name: 'K Picnic',
+thumbnail: require('./New folder/K Picnic/thumbnail.jpg'),
 images: [
-require('./Children’s Books/Jesus king of kings/Big .JPG'),
-require('./Children’s Books/Jesus king of kings/IMG_4230.JPG'),
-require('./Children’s Books/Jesus king of kings/IMG_4229.JPG'),
-require('./Children’s Books/Jesus king of kings/IMG_4228.JPG')
+require('./New folder/K Picnic/Big.JPG')
 ]
 },
 {
-name: 'Little red',
-thumbnail: require('./Children’s Books/Little red/thumbnail.jpg'),
+name: 'L Star dream',
+thumbnail: require('./New folder/L Star dream/thumbnail.jpg'),
 images: [
-require('./Children’s Books/Little red/Big .JPG'),
-require('./Children’s Books/Little red/IMG_3584.JPG'),
-require('./Children’s Books/Little red/IMG_3582.JPG')
+require('./New folder/L Star dream/Big.JPG')
 ]
 },
 {
-name: 'Princess Blah Blah',
-thumbnail: require('./Children’s Books/Princess Blah Blah/thumbnail.jpg'),
+name: 'M Denmark',
+thumbnail: require('./New folder/M Denmark/thumbnail.jpg'),
 images: [
-require('./Children’s Books/Princess Blah Blah/Big.JPG'),
-require('./Children’s Books/Princess Blah Blah/IMG_3771.JPG'),
-require('./Children’s Books/Princess Blah Blah/IMG_3770.JPG'),
-require('./Children’s Books/Princess Blah Blah/IMG_3769.JPG')
+require('./New folder/M Denmark/Big.JPG')
 ]
 },
 {
-name: 'Surgery',
-thumbnail: require('./Children’s Books/Surgery/thumbnail.jpg'),
+name: 'N Tent reading',
+thumbnail: require('./New folder/N Tent reading/thumbnail.jpg'),
 images: [
-require('./Children’s Books/Surgery/IMG_3785.JPG'),
-require('./Children’s Books/Surgery/IMG_4213.JPG'),
-require('./Children’s Books/Surgery/Big.JPG')
+require('./New folder/N Tent reading/Big.JPG')
 ]
 },
 {
-name: 'Thanksgiving',
-thumbnail: require('./Children’s Books/Thanksgiving/thumbnail.jpg'),
+name: 'O park',
+thumbnail: require('./New folder/O park/thumbnail.jpg'),
 images: [
-require('./Children’s Books/Thanksgiving/Big.JPG')
-]
-},
-]},
-
-{
-name: 'Coloring books',
-contents: [
-{
-name: '1Wizard of oz',
-thumbnail: require('./Coloring books/1Wizard of oz/thumbnail.jpg'),
-images: [
-require('./Coloring books/1Wizard of oz/IMG_3781.JPG'),
-require('./Coloring books/1Wizard of oz/IMG_4192.JPG'),
-require('./Coloring books/1Wizard of oz/Big.JPG')
+require('./New folder/O park/Big.JPG')
 ]
 },
 {
-name: 'During the sacrament',
-thumbnail: require('./Coloring books/During the sacrament/thumbnail.jpg'),
+name: 'P dream room window',
+thumbnail: require('./New folder/P dream room window/thumbnail.jpg'),
 images: [
-require('./Coloring books/During the sacrament/IMG_2448.JPG'),
-require('./Coloring books/During the sacrament/IMG_2469.JPG'),
-require('./Coloring books/During the sacrament/IMG_2460.JPG'),
-require('./Coloring books/During the sacrament/Big.JPG')
-]
-},
-]},
-
-{
-name: 'Magazines',
-contents: [
-{
-name: 'Friend',
-thumbnail: require('./Magazines/Friend/thumbnail.jpg'),
-images: [
-require('./Magazines/Friend/IMG_4208.JPG'),
-require('./Magazines/Friend/IMG_4210.JPG'),
-require('./Magazines/Friend/IMG_4186.JPG')
-]
-},
-]},
-
-{
-name: 'Other',
-contents: [
-{
-name: 'Cottage',
-thumbnail: require('./Other/Cottage/thumbnail.jpg'),
-images: [
-require('./Other/Cottage/Imh56.JPG'),
-require('./Other/Cottage/big.JPG')
+require('./New folder/P dream room window/Big.JPG')
 ]
 },
 {
-name: 'Ethnicity',
-thumbnail: require('./Other/Ethnicity/thumbnail.jpg'),
+name: 'Q forest',
+thumbnail: require('./New folder/Q forest/thumbnail.jpg'),
 images: [
-require('./Other/Ethnicity/Big.JPG')
+require('./New folder/Q forest/Big.JPG')
 ]
 },
 {
-name: 'HugOnABed',
-thumbnail: require('./Other/HugOnABed/thumbnail.jpg'),
+name: 'R spot mom',
+thumbnail: require('./New folder/R spot mom/thumbnail.jpg'),
 images: [
-require('./Other/HugOnABed/Big.JPG')
+require('./New folder/R spot mom/Big.JPG')
+]
+},
+{
+name: 'S poodle',
+thumbnail: require('./New folder/S poodle/thumbnail.jpg'),
+images: [
+require('./New folder/S poodle/Big.JPG')
+]
+},
+{
+name: 'T Imagination',
+thumbnail: require('./New folder/T Imagination/thumbnail.jpg'),
+images: [
+require('./New folder/T Imagination/Big.JPG')
+]
+},
+{
+name: 'U boy and dog',
+thumbnail: require('./New folder/U boy and dog/thumbnail.jpg'),
+images: [
+require('./New folder/U boy and dog/Big.JPG')
 ]
 },
 ]},

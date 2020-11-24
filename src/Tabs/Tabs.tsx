@@ -1,5 +1,5 @@
 import * as React from 'react';
-import imagesFolderDef from '../images/javascriptGenImages';
+// import imagesFolderDef from '../images/javascriptGenImages';
 import * as cx from 'classnames';
 import {Link, RouteComponentProps, withRouter} from 'react-router-dom';
 import Analytics from '../Analytics';
@@ -25,7 +25,7 @@ class Tabs extends React.Component<RouteComponentProps<MatchProps>, TabState> {
   render() {
     const {open} = this.state;
     const view = this.props.match.params.view;
-    const tabs = imagesFolderDef.filter((folder) => folder.name.toLowerCase() !== 'other').map((folder) => folder.name);
+    // const tabs = imagesFolderDef.filter((folder) => folder.name.toLowerCase() !== 'other').map((folder) => folder.name);
 
     return <div>
       <div className={cx(styles.menuButton, {[styles.open]: open})} onClick={this.handleMenuClick}>Menu</div>
@@ -36,7 +36,7 @@ class Tabs extends React.Component<RouteComponentProps<MatchProps>, TabState> {
           Home
         </span>
       </Link>
-        {
+        {/* {
           tabs.map(tab =>
             <Link  key={tab} to={`/${tab}`} className={cx({[styles.current]: view === tab}, styles.tab)} onClick={() => {this.handleMenuClick(); Analytics.track('navigate', {id: tab})}}>
               <span>
@@ -44,7 +44,7 @@ class Tabs extends React.Component<RouteComponentProps<MatchProps>, TabState> {
               </span>
             </Link>
           )
-        }
+        } */}
         <Link to={`/contact`} className={cx({[styles.current]: view === 'contact'}, styles.tab)} onClick={() => {this.handleMenuClick(); Analytics.track('navigate', {id: 'contact'})}}>
           Contact
         </Link>

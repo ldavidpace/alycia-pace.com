@@ -22,6 +22,7 @@
     "fork-ts-checker-webpack-plugin": "^0.2.8",
     "fs": "0.0.1-security",
     "fs-extra": "3.0.1",
+    "googleapis": "39",
     "history": "^4.10.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",

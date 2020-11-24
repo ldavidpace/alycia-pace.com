@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Router,
+  Switch,
   Route,
   Link,
 } from 'react-router-dom';
@@ -8,6 +9,7 @@ import {
 import MainList from './MainList';
 import Tabs from './Tabs/Tabs';
 import FeatureDisplay from './FeatureDisplay';
+import AdminView from './AdminView';
 import Analytics from './Analytics';
 
 import history from './history';
@@ -24,13 +26,20 @@ class App extends React.Component<AppProps> {
       <Router history={history}>
         <div className={styles.App}>
           <header className={styles["App-header"]}>
-            <Link to={'/'} className={styles['Main-Link']} onClick={() => Analytics.track('navigate', {id: 'MainLink'})}>
+            <Link to={'/'} className={styles['Main-Link']} onClick={() => Analytics.track('navigate', { id: 'MainLink' })}>
               <h1 className={styles["App-title"]}>Alycia Pace</h1>
             </Link>
           </header>
-          <Route path={'/:view?'} component={Tabs} />
-          <Route path={'/:view?'} component={FeatureDisplay} />
-          <Route path={'/:view?'} component={MainList} />
+          <Switch>
+            <Route path={'/admin'} component={AdminView} />
+            <Route path={'/:view?'} component={(props: any) => {
+              return <React.Fragment>
+                <Tabs {...props} />
+                <FeatureDisplay {...props} />
+                <MainList {...props} />
+              </React.Fragment>
+            }}></Route>
+          </Switch>
         </div>
       </Router>
     );
