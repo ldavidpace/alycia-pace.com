@@ -26,5 +26,5 @@ pnpm-debug.log*
 .vscode
 dist
 
-*Old*
-
+imagesOld
+getPicsOld.js
