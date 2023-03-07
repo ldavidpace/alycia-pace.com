@@ -63,3 +63,7 @@
     margin-left: 4px;
   }
 }
+
+.filler {
+  display: block;
+}
