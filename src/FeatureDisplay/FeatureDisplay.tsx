@@ -8,53 +8,52 @@ import history from '../history';
 import Analytics from '../Analytics';
 // import { parse } from 'qs'
 
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
+import { useParams, Link,  } from 'react-router-dom';
 import Images from '../images/javascriptGenImages';
 import './FeatureDisplay.css';
 
-type matchProps = {
-  view: string;
-}
+const FeatureDisplay = () => {
+  const params = useParams<{view: string}>();
+  const nodeRef = React.useRef($(`<div id="modalContainer"></div>`));
 
-class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
-  getPreviousLink(id: string) {
+  const getPreviousLink = (id: string) => {
     let nextFrame = (parseInt(id, 10) - 1);
     if (nextFrame < 0) {
-      nextFrame = this.getCurrentFolderList(this.props.match.params.view).length - 1;
+      nextFrame = getCurrentFolderList().length - 1;
     }
     return '#' + nextFrame;
   }
 
-  getNextLink(id: string) {
+  const getNextLink = (id: string) => {
     let nextFrame = (parseInt(id, 10) + 1);
-    if (nextFrame > this.getCurrentFolderList(this.props.match.params.view).length - 1) {
+    if (nextFrame > getCurrentFolderList().length - 1) {
       nextFrame = 0;
     }
     return '#' + nextFrame;
   }
-  node = $(`<div id="modalContainer"></div>`);
-  componentWillMount() {
-    $('body').append(this.node);
-    window.addEventListener('keyup', this.handleKeyPress);
+
+  React.useEffect(() => {
+    $('body').append(nodeRef.current);
+    window.addEventListener('keyup', handleKeyPress);
+
+    return () => {
+      nodeRef.current.remove();
+      window.removeEventListener('keyup', handleKeyPress);
+    }
+  }, [])
+
+  const handleHide = () => {
+    history.push('/');
   }
 
-  componentWillUnmount() {
-    this.node.remove();
-    window.removeEventListener('keyup', this.handleKeyPress);
-  }
-
-  handleHide = () => {
-    this.props.history.push('/');
-  }
-
-  handleKeyPress = (event: KeyboardEvent) => {
+  const handleKeyPress = (event: KeyboardEvent) => {
     if (event.keyCode === 27) {
-      this.handleHide();
+      handleHide();
     }
   }
 
-  getCurrentFolderList(view: string) {
-    const folder = Images.find(folder => folder.name === this.props.match.params.view)
+  const getCurrentFolderList = () => {
+    const folder = Images.find(folder => folder.name === params.view)
 
 
     const files = folder ? folder.contents : Images.reduce((acc, folder) => {
@@ -63,7 +62,7 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
     return files;
   }
 
-  handleClose = () => {
+  const handleClose = () => {
     if (history.replace) {
       history.replace(window.location.pathname + window.location.search);
     } else {
@@ -71,9 +70,8 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
     }
   }
 
-  render() {
     const currentId = window.location.hash.substr(1);
-    const folders = this.getCurrentFolderList(this.props.match.params.view);
+    const folders = getCurrentFolderList();
 
     if (!folders[currentId]) return null;
     // return createPortal(<div className={'Modal-Backdrop'}>
@@ -92,14 +90,14 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
           )
         }
         <div className="featured__links">
-          <Link to={this.getPreviousLink(currentId)} onClick={() => {
+          <Link to={getPreviousLink(currentId)} onClick={() => {
             Analytics.track('featurePreviousClick');
             const root = document.querySelector('#root');
             root && root.scrollTo(0,0);
           }}>
             back
           </Link>
-          <Link to={this.getNextLink(currentId)} onClick={() => {
+          <Link to={getNextLink(currentId)} onClick={() => {
             Analytics.track('featureNextClick');
             const root = document.querySelector('#root');
             root && root.scrollTo(0,0);
@@ -123,7 +121,6 @@ class FeatureDisplay extends React.Component<RouteComponentProps<matchProps>> {
     //   {/* </div> */}
     // </Modal>
 
-  }
 }
 
-export default withRouter(FeatureDisplay);
+export default FeatureDisplay;

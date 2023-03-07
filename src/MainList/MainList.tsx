@@ -1,25 +1,18 @@
 import * as React from 'react';
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ContactPage from '../ContactPage';
 
 import Images from '../images/javascriptGenImages';
 import * as styles from './MainList.module.css';
 
-console.log(styles);
-
 import Analytics from '../Analytics';
 
-type matchProps = {
-  view: string;
-}
-
-class MainList extends React.Component<RouteComponentProps<matchProps>> {
-    
-  render () {
-    if (this.props.match.params.view === 'contact') return (
+const MainList = () => {
+    const params = useParams<{view: string}>();
+    if (params.view === 'contact') return (
       <ContactPage></ContactPage>
     )
-    const folder = Images.find( folder => folder.name === this.props.match.params.view)
+    const folder = Images.find( folder => folder.name === params.view)
     const files = folder ? folder.contents : Images.reduce( (acc, folder) => {
         return [...acc, ...folder.contents];
       }, []);
@@ -48,7 +41,6 @@ class MainList extends React.Component<RouteComponentProps<matchProps>> {
           <div className={styles.filler}/>
       </div>
     );
-  }
 }
 
-export default withRouter(MainList);
+export default MainList;

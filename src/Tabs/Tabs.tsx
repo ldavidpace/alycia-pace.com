@@ -1,41 +1,42 @@
-import * as React from 'react';
+import * as React from "react";
 // import imagesFolderDef from '../images/javascriptGenImages';
-import * as cx from 'classnames';
-import {Link, RouteComponentProps, withRouter} from 'react-router-dom';
-import Analytics from '../Analytics';
+import * as cx from "classnames";
+import { Link, useParams } from "react-router-dom";
+import Analytics from "../Analytics";
 
-const styles = require('./Tabs.module.css');
+import * as styles from "./Tabs.module.css";
 
-type MatchProps = {
-  view: string;
-}
+const Tabs = () => {
+  const [open, setOpen] = React.useState(false);
+  const params = useParams<{ view: string }>();
 
-type TabState = {
-  open: boolean
-}
-class Tabs extends React.Component<RouteComponentProps<MatchProps>, TabState> {
-  state = {
-    open: false,
-  }
-  
-  handleMenuClick = () => {
-    this.setState({open: !this.state.open});
-  }
+  const handleMenuClick = () => {
+    setOpen((lastOpen) => !lastOpen);
+  };
 
-  render() {
-    const {open} = this.state;
-    const view = this.props.match.params.view;
-    // const tabs = imagesFolderDef.filter((folder) => folder.name.toLowerCase() !== 'other').map((folder) => folder.name);
+  const view = params.view;
+  // const tabs = imagesFolderDef.filter((folder) => folder.name.toLowerCase() !== 'other').map((folder) => folder.name);
 
-    return <div>
-      <div className={cx(styles.menuButton, {[styles.open]: open})} onClick={this.handleMenuClick}>Menu</div>
+  return (
+    <div>
+      <div
+        className={cx(styles.menuButton, { [styles.open]: open })}
+        onClick={handleMenuClick}
+      >
+        Menu
+      </div>
       <div className={styles.hidden}></div>
-      <div className={cx(styles.tabContainer, {[styles.hidden]: !open})}>
-      <Link  to={`/`} className={cx({[styles.current]: !view}, styles.tab)} onClick={() => {this.handleMenuClick(); Analytics.track('navigate', {id: 'all'})}}>
-        <span>
-          Home
-        </span>
-      </Link>
+      <div className={cx(styles.tabContainer, { [styles.hidden]: !open })}>
+        <Link
+          to={`/`}
+          className={cx({ [styles.current]: !view }, styles.tab)}
+          onClick={() => {
+            handleMenuClick();
+            Analytics.track("navigate", { id: "all" });
+          }}
+        >
+          <span>Home</span>
+        </Link>
         {/* {
           tabs.map(tab =>
             <Link  key={tab} to={`/${tab}`} className={cx({[styles.current]: view === tab}, styles.tab)} onClick={() => {this.handleMenuClick(); Analytics.track('navigate', {id: tab})}}>
@@ -45,12 +46,19 @@ class Tabs extends React.Component<RouteComponentProps<MatchProps>, TabState> {
             </Link>
           )
         } */}
-        <Link to={`/contact`} className={cx({[styles.current]: view === 'contact'}, styles.tab)} onClick={() => {this.handleMenuClick(); Analytics.track('navigate', {id: 'contact'})}}>
+        <Link
+          to={`/contact`}
+          className={cx({ [styles.current]: view === "contact" }, styles.tab)}
+          onClick={() => {
+            handleMenuClick();
+            Analytics.track("navigate", { id: "contact" });
+          }}
+        >
           Contact
         </Link>
       </div>
     </div>
-  }
-}
+  );
+};
 
-export default withRouter(Tabs)
+export default Tabs;
