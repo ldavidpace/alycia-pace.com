@@ -1,1 +1,1 @@
-release: node ./scripts/migrations.mjs
+release: node ./scripts/release.mjs
