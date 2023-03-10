@@ -2,12 +2,14 @@ import * as express from 'express';
 import * as path from 'path';
 const app = express();
 
-
 app.use(express.static(__dirname + '/../build'));
 
+app.get('*', (request, response) => {  
+  if (process.env.NODE_ENV != 'development' && !request.secure) {
+    return response.redirect("https://" + request.headers.host + request.url);
+ }
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname,'../build/index.html'));
+  response.sendFile(path.resolve(__dirname,'../build/index.html'));
 });
 
 const port = process.env.PORT || 3000;
