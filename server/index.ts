@@ -6,7 +6,8 @@ app.use(express.static(__dirname + '/../build'));
 
 
 app.get('*', (request, response) => {  
-  if (process.env.NODE_ENV != 'development' && request.protocol !== 'http') {
+  console.log(`Request for ${request.path} forwarded proto ${request.headers['x-forwarded-proto']}`)
+  if (process.env.NODE_ENV != 'development' && request.headers['x-forwarded-proto'] !== 'https') {
     return response.redirect("https://" + request.headers.host + request.url);
  }
 
