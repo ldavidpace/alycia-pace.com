@@ -4,8 +4,9 @@ const app = express();
 
 app.use(express.static(__dirname + '/../build'));
 
+
 app.get('*', (request, response) => {  
-  if (process.env.NODE_ENV != 'development' && !request.secure) {
+  if (process.env.NODE_ENV != 'development' && request.protocol !== 'http') {
     return response.redirect("https://" + request.headers.host + request.url);
  }
 
