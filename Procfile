@@ -1,1 +1,1 @@
-release: node scripts/migrations.sh
+release: node scripts/migrations.mjs
