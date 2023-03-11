@@ -16,6 +16,8 @@ const MainList = () => {
     const files = folder ? folder.contents : Images.reduce( (acc, folder) => {
         return [...acc, ...folder.contents];
       }, []);
+
+      console.log(styles, styles.container);
     return (
       <div className={styles.container}>
           {

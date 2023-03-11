@@ -6,17 +6,17 @@ import pg from 'pg';
 export default async () => {
   const client = new pg.Client({
     connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: process.env.NODE_ENV !== 'production',
+    ssl: process.env.NODE_ENV !== 'production'? undefined: {
+      rejectUnauthorized: false,
     }
   })
   await client.connect()
   await migrate(
-    {client}, 
+    {client},
     path.join(
       path.dirname(
         fileURLToPath(import.meta.url)
-      ), 
+      ),
       '/migrations'
     )
   )  
