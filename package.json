@@ -3,13 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "targets": {
-    "default": {
-      "source": "src/portfolio/index.html",
-      "distDir": "build"
+    "portfolio": {
+      "source": "src/portfolio/index.html"
     },
     "quiz": {
-      "source": "src/quiz/index.html",
-      "distDir": "quizCentral"
+      "source": "src/quiz/index.html"
     }
   },
   "watch": {
