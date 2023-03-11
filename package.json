@@ -4,10 +4,12 @@
   "private": true,
   "targets": {
     "portfolio": {
-      "source": "src/portfolio/index.html"
+      "source": "src/portfolio/index.html",
+      "publicUrl": "/portfolio"
     },
     "quiz": {
-      "source": "src/quiz/index.html"
+      "source": "src/quiz/index.html",
+      "publicUrl": "/quiz"
     }
   },
   "watch": {
