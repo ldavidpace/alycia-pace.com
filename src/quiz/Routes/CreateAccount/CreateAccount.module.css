@@ -1,0 +1,35 @@
+
+.container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    background-color: #f3f3f3;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 3px;
+    max-width: 90%;
+    width: 500px;
+    border: var(--border)
+}
+
+
+.container label {
+    display: flex;
+    gap: 16px;
+}
+
+.container input {
+    flex: 1;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;   
+}

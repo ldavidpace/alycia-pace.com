@@ -6,9 +6,19 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import Analytics from "./Analytics";
+import {
+  getSessionInfo
+} from './service/sessionUtils';
+
+import AppContext from "./AppContext";
+
+
 
 import * as styles from "./App.module.css"
+import Header from "./Header";
+import CreateAccount from "./Routes/CreateAccount";
+import Login from "./Routes/Login";
+import { SessionInfo, User } from "./AppContext/userTypes";
 
 type AppProps = {};
 
@@ -17,35 +27,48 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <div className={styles.App}>
-        <header className={styles["App-header"]}>
-          <Link
-            to={"/"}
-            className={styles["Main-Link"]}
-            onClick={() => Analytics.track("navigate", { id: "MainLink" })}
-          >
-            <h1 className={styles["App-title"]}>Quiz Central</h1>
-          </Link>
-        </header>
+        <Header />
         <Outlet />
       </div>
     ),
     children: [
       {
+        path: "/login",
+        element: (
+          <Login />
+        )
+      },
+      {
+        path: "/createAccount",
+        element: <CreateAccount />
+      },
+      {
         path: "/:view?",
         element: (
-          <React.Fragment>
-
-          </React.Fragment>
+          <div>
+            
+          </div>
         ),
       },
     ],
   },
 ]);
 
-class App extends React.Component<AppProps> {
-  render() {
-    return <RouterProvider router={router} />;
-  }
+const App = ({}: AppProps) => {
+  const [context, setContext] = React.useState<SessionInfo>();
+  React.useEffect(() => {
+    getSessionInfo().then(( user )=>{
+      setContext(user);
+    });
+  }, []);
+  
+  const contextValue = React.useMemo(() => ({
+    user: context?.user,
+  }) ,[context])
+
+  return <AppContext.Provider value={contextValue}>
+    <RouterProvider router={router} />
+  </AppContext.Provider>;
 }
 
 export default App;

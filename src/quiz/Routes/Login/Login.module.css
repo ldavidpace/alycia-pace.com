@@ -1,0 +1,57 @@
+
+.container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginBox {
+    background-color: #f3f3f3;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 3px;
+    max-width: 90%;
+    width: 500px;
+    border: var(--border)
+}
+
+.title {
+    align-self: center;
+    font-size: 1.5em;
+    padding-bottom: 16px;
+}
+
+.error {
+    color: var(--colorWarning);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+
+.container label {
+    display: flex;
+    gap: 16px;
+}
+
+.container input {
+    flex: 1;
+}
+
+.link {
+    align-self: flex-end;
+}
+
+.exclamation:after {
+    border-radius: 50%;
+    background-color: var(--colorWarning);
+    color: white;
+    content: "!";
+    width: 20px;
+    height: 20px;
+    display: block;
+}

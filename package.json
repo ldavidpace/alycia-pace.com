@@ -2,20 +2,30 @@
   "name": "alycia-pace",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">18.0.0"
+  },
   "targets": {
     "portfolio": {
       "source": "src/portfolio/index.html",
-      "publicUrl": "/portfolio"
+      "publicUrl": "/portfolio",
+      "context": "browser"
     },
     "quiz": {
       "source": "src/quiz/index.html",
-      "publicUrl": "/quiz"
+      "publicUrl": "/quiz",
+      "context": "browser"
+    },
+    "server": {
+      "source": "server/index.ts",
+      "publicUrl": "/server",
+      "context": "node"
     }
   },
   "watch": {
     "build-server": {
       "patterns": [
-        "src"
+        "server"
       ],
       "extensions": "ts,tsx,html,css",
       "quiet": false
@@ -23,18 +33,21 @@
   },
   "scripts": {
     "start": "npm run serve",
-    "dev": "NODE_ENV=development run-p  dev-client watch-server serve",
-    "serve": "nodemon dist/index.js --watch dist/**/*",
+    "dev": "DATABASE_URL=db/database NODE_ENV=development parcel watch",
+    "debug": "NODE_ENV=development run-p dev-client watch-server serverDebug",
+    "serve": "nodemon dist/index.js -- --watch dist/**/*",
+    "serverDebug": "nodemon --inspect-brk dist/index.js",
     "build-server": "tsc -p server",
     "start-server": "npm-run-all build-server serve",
     "watch-server": "npm-watch build-server",
     "watch-build": "npm-watch dev-build",
-    "dev-client": "parcel",
+    "dev-client": "parcel watch",
     "build-client": "parcel build",
     "build": "npm-run-all build-client build-server",
     "dev-build": "npm run build -- --env=dev",
     "test": "node scripts/test.js --env=jsdom",
-    "images": "node ./bin/getPics.js"
+    "images": "node ./bin/getPics.js",
+    "release": "node ./scripts/release.mjs"
   },
   "devDependencies": {
     "@parcel/config-default": "^2.8.3",
@@ -57,7 +70,10 @@
     "npm-watch": "^0.11.0",
     "os-browserify": "^0.3.0",
     "parcel": "^2.8.3",
+    "parcel-reporter-express-server": "file:./parcel-reporter-express-server",
     "path-browserify": "^1.0.1",
+    "postcss": "^8.4.21",
+    "postcss-modules": "^4.3.1",
     "prettier": "^2.8.4",
     "process": "^0.11.10",
     "punycode": "^1.4.1",
@@ -67,21 +83,30 @@
     "stream-http": "^3.2.0",
     "tty-browserify": "^0.0.1",
     "typescript": "^4.9.5",
+    "typescript-plugin-css-modules": "^5.0.0",
     "url": "^0.11.0",
     "util": "^0.12.5"
   },
   "dependencies": {
     "@parcel/core": "^2.8.3",
+    "argon2": "^0.30.3",
+    "aws-sdk": "^2.1342.0",
+    "body-parser": "^1.20.2",
     "classnames": "^2.3.2",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
     "history": "^5.3.0",
     "jquery": "^3.6.3",
+    "keygrip": "^1.1.0",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.21",
     "pg": "^8.10.0",
     "pg-native": "^3.0.1",
     "postgres-migrations": "^5.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.2"
+    "react-router-dom": "^6.8.2",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
   }
 }

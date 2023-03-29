@@ -1,0 +1,28 @@
+
+
+.container {
+    background-color: rgb(223, 103, 50);
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.title {
+    font-size: 1em;
+    margin-bottom: 0px;
+    margin-top: 0;
+    font-family: "Homemade Apple";
+    text-decoration: none;
+    color: white;
+}
+
+.login {
+    color: white;
+    text-decoration: none;
+}
+
+.login:hover {
+    text-decoration: underline;
+}
