@@ -10,10 +10,10 @@ export default async () => {
     fileURLToPath(import.meta.url)
   );
 
-  const DatabaseUrl = process.env.DATABASE_URL || path.join(__dirname, 'database')
+  const databaseUrl = process.env.DATABASE_URL || path.join(__dirname, 'database')
 
   await new Promise((resolve, reject) => {
-    const database = new sqlite3.Database(process.env.DATABASE_URL, async (err) => {
+    const database = new sqlite3.Database(databaseUrl, async (err) => {
       if (err) {
         throw new Error("Something Went wrong" + err);
       }
