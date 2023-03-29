@@ -22,19 +22,10 @@
       "context": "node"
     }
   },
-  "watch": {
-    "build-server": {
-      "patterns": [
-        "server"
-      ],
-      "extensions": "ts,tsx,html,css",
-      "quiet": false
-    }
-  },
   "scripts": {
-    "start": "npm run serve",
+    "start": "nodemon dist/server/index.js --watch dist/*",
+    "debug": "nodemon --inspect-brk dist/server/index.js --watch dist/*",
     "dev": "NODE_ENV=development parcel watch",
-    "serve": "nodemon dist/index.js",
     "build": "NODE_ENV=production parcel build",
     "test": "node scripts/test.js --env=jsdom",
     "images": "node ./bin/getPics.js",
@@ -57,8 +48,6 @@
     "crypto-browserify": "^3.12.0",
     "events": "^3.3.0",
     "https-browserify": "^1.0.0",
-    "npm-run-all": "^4.1.5",
-    "npm-watch": "^0.11.0",
     "os-browserify": "^0.3.0",
     "parcel": "^2.8.3",
     "parcel-reporter-express-server": "file:./parcel-reporter-express-server",

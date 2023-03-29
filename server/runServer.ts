@@ -31,9 +31,9 @@ const runServer = (app: Express) => {
     app.use(express.static('public'));
 
     app.use(async (request, response, next) => { 
-        if (request.cookies['X_SMMOG_AUTHENTICATION']) {
+        if (request.cookies[AUTH_HEADER]) {
             try {
-                const session = await validateSession(request.cookies['X_SMMOG_AUTHENTICATION']); 
+                const session = await validateSession(request.cookies[AUTH_HEADER]); 
                 request.session = session;
             } catch(err) {}
         }

@@ -2,7 +2,7 @@ import { Database } from "sqlite3";
 import { SelectStatementResults, SQLStatementProps } from "./databaseTypes";
 
 const databaseUrl = process.env.DATABASE_URL || 'db/database';
-
+console.log(databaseUrl);
 const database = new Database(databaseUrl, (err) => {
   if (err) {
     throw new Error(`Could not start database!!! failed with ${err}`);

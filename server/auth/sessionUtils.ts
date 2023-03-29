@@ -1,12 +1,12 @@
 import {v4 as uuid} from 'uuid'
 import { getSessionInfo, recordSession } from './sessionMapper';
-import Keygrip from 'keygrip';
+// import Keygrip from 'keygrip';
 import { getUserInfo } from './authMapper';
 
 
 export const AUTH_HEADER = 'X_SMMOG_AUTHENTICATION';
 
-const keys = Keygrip(['497184c0-dbba-4c67-a975-15c8142742c5'], 'sha256');
+// const keys = Keygrip(['497184c0-dbba-4c67-a975-15c8142742c5'], 'sha256');
 
 export const createSession = (userId: number, duration = 24 * 60 * 60 * 1000) => {
     const sessionUuid = uuid();
