@@ -5,16 +5,15 @@ import sqlite3 from 'sqlite3';
 import { createHash } from 'crypto';
 
 
-
-
 export default async () => {
   const __dirname = path.dirname(
     fileURLToPath(import.meta.url)
   );
 
-  
+  const DatabaseUrl = process.env.DATABASE_URL || path.join(__dirname, 'database')
+
   await new Promise((resolve, reject) => {
-    const database = new sqlite3.Database(path.join(__dirname, 'database'), async (err) => {
+    const database = new sqlite3.Database(process.env.DATABASE_URL, async (err) => {
       if (err) {
         throw new Error("Something Went wrong" + err);
       }

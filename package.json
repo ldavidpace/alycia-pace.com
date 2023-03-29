@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "npm run serve",
-    "dev": "DATABASE_URL=db/database NODE_ENV=development parcel watch",
+    "dev": "NODE_ENV=development parcel watch",
     "debug": "NODE_ENV=development run-p dev-client watch-server serverDebug",
     "serve": "nodemon dist/index.js -- --watch dist/**/*",
     "serverDebug": "nodemon --inspect-brk dist/index.js",

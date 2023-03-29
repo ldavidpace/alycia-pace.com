@@ -1,15 +1,13 @@
-import pool from '../database';
+import {get, insert} from '../database';
 
 
 export const selectQuizes = () => {
-    return pool.query({
-        text: `Select * from quiz`
-    })
+    return get(`Select * from quiz`);
 }
 
 export const insertQuiz = (quiz) => {
-    return pool.query({
-        text: `Insert into quiz (name)`,
-        values: [quiz.name]
-    });
+    return insert(
+        `Insert into quiz (name) values ($name)`,
+        {name: quiz.name}
+    );
 }

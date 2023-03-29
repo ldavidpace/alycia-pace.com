@@ -1,13 +1,15 @@
 import { Database } from "sqlite3";
 import { SelectStatementResults, SQLStatementProps } from "./databaseTypes";
 
-const database = new Database(process.env.DATABASE_URL, (err) => {
+const databaseUrl = process.env.DATABASE_URL || 'db/database';
+
+const database = new Database(databaseUrl, (err) => {
   if (err) {
     throw new Error(`Could not start database!!! failed with ${err}`);
   }
 });
 
-const prefixBindings = (bindings: {[key: string]: any}) => {
+const prefixBindings = (bindings?: {[key: string]: any}) => {
   if (!bindings) return;
   return Object.entries(bindings).reduce((agg, [key, input]) => {
     agg[`$${key}`] = input;
@@ -17,7 +19,7 @@ const prefixBindings = (bindings: {[key: string]: any}) => {
 
 export const insert = <S extends string>(
   sql: S,
-  bindings: SQLStatementProps<S>
+  bindings?: SQLStatementProps<S>
 ) =>
   new Promise<number>((resolve, reject) => {
     database.run(sql, prefixBindings(bindings), function (err) {
@@ -30,7 +32,7 @@ export const insert = <S extends string>(
 
 export const update = <S extends string>(
   sql: S,
-  bindings: SQLStatementProps<S>
+  bindings?: SQLStatementProps<S>
 ) =>
   new Promise<number>((resolve, reject) => {
     database.run(sql, prefixBindings(bindings), function (err) {
@@ -41,7 +43,7 @@ export const update = <S extends string>(
     });
   });
 
-export const get = <S extends string>(sql: S, bindings: SQLStatementProps<S>) =>
+export const get = <S extends string>(sql: S, bindings?: SQLStatementProps<S>) =>
   new Promise<SelectStatementResults<S>>((resolve, reject) => {
     database.get(sql, prefixBindings(bindings), function (err, row: SelectStatementResults<S>) {
       if (err) {
