@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
 import { createHash } from 'crypto';
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 
 
 export default async () => {
@@ -13,6 +14,24 @@ export default async () => {
   const databaseUrl = process.env.DATABASE_URL || path.join(__dirname, 'database.db')
 
   console.log(databaseUrl);
+
+  const client = new S3Client({
+      region: 'us-west-1',
+  });
+
+  try {
+    const s3Params = new GetObjectCommand({
+      Bucket: "quiz-central",
+      Key: databaseUrl,
+    });
+    const response = await client.send(s3Params);
+    const database = await response.Body.transformToString()
+    if (writeToFileSystem) {
+        writeFileSync(targetFileName, database, {encoding: "base64"});
+    }
+  } catch(err) {
+
+  }
 
   await new Promise((resolve, reject) => {
     const database = new sqlite3.Database(databaseUrl, async (err) => {
@@ -70,6 +89,15 @@ export default async () => {
         }
       }
        
+
+      const databaseOutput = readFileSync(databaseUrl, {endcoding: 'base64'});
+
+      const s3Params = new PutObjectCommand({
+        Bucket: "quiz-central",
+        Key: databaseUrl,
+        Body: databaseOutput,
+      });
+      client.send(s3Params);
       resolve();
     });
   });
