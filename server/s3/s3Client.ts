@@ -24,9 +24,9 @@ export const getObject = async (targetFileName: string, writeToFileSystem) => {
         Key: targetFileName,
     });
     const response = await client.send(s3Params);
-    const database = await response.Body.transformToString()
+    const database = await response.Body.transformToByteArray()
     if (writeToFileSystem) {
-        writeFileSync(targetFileName, database, {encoding: "base64"});
+        writeFileSync(targetFileName, database);
     }
     return response;
 }

@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'fs';
+import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
@@ -25,10 +25,11 @@ export default async () => {
       Key: databaseUrl,
     });
     const response = await client.send(s3Params);
-    const database = await response.Body.transformToString()
-    writeFileSync(targetFileName, database, {encoding: "base64"});
+    const database = await response.Body.transformToByteArray()
+    writeFileSync(databaseUrl, database);
+    console.log('Pulled Database from s3');
   } catch(err) {
-
+    console.log("Couldn't pull Database form s3" , err);
   }
 
   await new Promise((resolve, reject) => {
@@ -88,7 +89,7 @@ export default async () => {
       }
        
 
-      const databaseOutput = readFileSync(databaseUrl, {endcoding: 'base64'});
+      const databaseOutput = readFileSync(databaseUrl);
 
       const s3Params = new PutObjectCommand({
         Bucket: "quiz-central",

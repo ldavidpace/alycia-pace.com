@@ -29,7 +29,7 @@ const prefixBindings = (bindings?: {[key: string]: any}) => {
 }
 
 const syncDatabase = (returnValue: any) => {
-  const database = readFileSync(databaseUrl, {encoding: "base64"});
+  const database = readFileSync(databaseUrl);
   putObject(databaseUrl, database);
   return returnValue;
 }

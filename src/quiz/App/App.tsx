@@ -11,8 +11,6 @@ import {
 
 import AppContext from "../Utilities/AppContext";
 
-
-
 import * as styles from "./App.module.css"
 import Header from "../Header";
 import CreateAccount from "../Routes/CreateAccount";
