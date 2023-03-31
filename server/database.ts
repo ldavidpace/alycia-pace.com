@@ -13,7 +13,8 @@ getObject(databaseUrl, true).catch(() => {
 }).finally(() => {
   database = new Database(databaseUrl, (err) => {
     if (err) {
-      throw new Error(`Could not start database!!! failed with ${err}`);
+      console.error(`Could not start database!!! failed with ${err}`);
+      process.exit(1);
     }
   });
 });
