@@ -29,8 +29,8 @@ export default (app: Express) => {
 
     app.post('/login', async (req, res, next) => {
         const body = req.body;
-        const {userId, password} = await looseGetPassword(body.name);
         try {
+            const {userId, password} = await looseGetPassword(body.name);
             if (await verify(password, addSalt(body.password))) {
                 const sessionId = createSession(userId);
                 res.cookie(AUTH_HEADER, sessionId, {

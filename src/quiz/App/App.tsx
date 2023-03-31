@@ -2,23 +2,25 @@ import * as React from "react";
 import {
   Outlet,
   createBrowserRouter,
-  Link,
   RouterProvider,
 } from "react-router-dom";
 
 import {
   getSessionInfo
-} from './service/sessionUtils';
+} from '../service/sessionUtils';
 
-import AppContext from "./AppContext";
+import AppContext from "../Utilities/AppContext";
 
 
 
 import * as styles from "./App.module.css"
-import Header from "./Header";
-import CreateAccount from "./Routes/CreateAccount";
-import Login from "./Routes/Login";
-import { SessionInfo, User } from "./AppContext/userTypes";
+import Header from "../Header";
+import CreateAccount from "../Routes/CreateAccount";
+import Login from "../Routes/Login";
+import { SessionInfo } from "../Utilities/AppContext/userTypes";
+import SubHeader from "../SubHeader";
+import Quizzes from "../Quizzes";
+import Review from "../Review";
 
 type AppProps = {};
 
@@ -28,27 +30,37 @@ const router = createBrowserRouter([
     element: (
       <div className={styles.App}>
         <Header />
+        <SubHeader />
         <Outlet />
       </div>
     ),
     children: [
       {
+        
+        path: "",
+        element: <Quizzes />
+      },
+      {
+        id: "review",
+        path: "/review",
+        element: <Review />
+      },
+      {
+        id: "login",
         path: "/login",
         element: (
           <Login />
         )
       },
       {
+        id: "createAccount",
         path: "/createAccount",
         element: <CreateAccount />
       },
       {
+        id: "home",
         path: "/:view?",
-        element: (
-          <div>
-            
-          </div>
-        ),
+        element: <div>Quizzes</div>
       },
     ],
   },

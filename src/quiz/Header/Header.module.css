@@ -1,7 +1,7 @@
 
 
 .container {
-    background-color: rgb(223, 103, 50);
+    background-color:var(--colorPrimary);
     height: 60px;
     display: flex;
     justify-content: space-between;

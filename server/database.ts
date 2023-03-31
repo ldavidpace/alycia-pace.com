@@ -1,13 +1,21 @@
 import { Database } from "sqlite3";
 import { SelectStatementResults, SQLStatementProps } from "./databaseTypes";
+import { readFileSync } from 'fs';
+import { getObject, putObject } from "./s3/s3Client";
+import path = require("path");
 
-const databaseUrl = process.env.DATABASE_URL || 'db/database';
-console.log(databaseUrl);
-const database = new Database(databaseUrl, (err) => {
-  if (err) {
-    throw new Error(`Could not start database!!! failed with ${err}`);
-  }
+const databaseUrl = process.env.DATABASE_URL || path.join(__dirname, 'database.db');
+
+
+let database;
+getObject(databaseUrl, true).finally(() => {
+  database = new Database(databaseUrl, (err) => {
+    if (err) {
+      throw new Error(`Could not start database!!! failed with ${err}`);
+    }
+  });
 });
+
 
 const prefixBindings = (bindings?: {[key: string]: any}) => {
   if (!bindings) return;
@@ -15,6 +23,12 @@ const prefixBindings = (bindings?: {[key: string]: any}) => {
     agg[`$${key}`] = input;
     return agg;
   }, {})
+}
+
+const syncDatabase = (returnValue: any) => {
+  const database = readFileSync(databaseUrl, {encoding: "base64"});
+  putObject(databaseUrl, database);
+  return returnValue;
 }
 
 export const insert = <S extends string>(
@@ -28,7 +42,7 @@ export const insert = <S extends string>(
       }
       resolve(this.lastID);
     });
-  });
+  }).then(syncDatabase);
 
 export const update = <S extends string>(
   sql: S,
@@ -41,7 +55,7 @@ export const update = <S extends string>(
       }
       resolve(this.changes);
     });
-  });
+  }).then(syncDatabase);
 
 export const get = <S extends string>(sql: S, bindings?: SQLStatementProps<S>) =>
   new Promise<SelectStatementResults<S>>((resolve, reject) => {

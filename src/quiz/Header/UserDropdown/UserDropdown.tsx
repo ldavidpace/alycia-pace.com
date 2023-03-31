@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import cx from "classnames";
 
 import styles from "./UserDropdown.module.css";
-import { useAppContext } from "../../AppContext/contextHooks";
+import { useAppContext } from "../../Utilities/AppContext/contextHooks";
+import OnClickOutside from "../../Utilities/OnClickOutside";
+import useMergeRefs from "../../Utilities/mergeRefs/useMergeRefs";
+import useOnEscape from "../../Utilities/onEscape/useOnEscape";
 
 export type UserDropdownProps = {};
 
@@ -16,6 +19,7 @@ const UserDropdown = ({}: UserDropdownProps) => {
   };
   const appContext = useAppContext();
 
+  const handleClose = ()=> {setOpen(false)}
   React.useEffect(() => {
     let raf: number;
     const positionMenu = () => {
@@ -40,22 +44,30 @@ const UserDropdown = ({}: UserDropdownProps) => {
         }
     }
   }, [open]);
+  const mergeRefs = useMergeRefs<HTMLDivElement>();
+  useOnEscape({
+    callback: handleClose
+  })
   return (
     <div className={cx(styles.container)}>
-      <button
-        className={styles.userIcon}
-        onClick={handleHandleClick}
-        ref={buttonHandle}
-      />
-      {open &&
-        ReactDOM.createPortal(
-          <div className={styles.dropdown} ref={menuRef}>
-            <div>Logged in as {appContext.user?.userName}</div>
-            <a href="/logout" className={styles.link}>Logout</a>
-          </div>,
-          document.body
-        )}
-    </div>
+        <button
+          className={styles.userIcon}
+          onClick={handleHandleClick}
+          ref={buttonHandle}
+        />
+        {open &&
+          ReactDOM.createPortal(
+            <OnClickOutside<HTMLDivElement> onClick={handleClose} ignoreClassName={styles.userIcon}>
+              {({ref}) => 
+                <div className={styles.dropdown} ref={mergeRefs(menuRef, ref)}>
+                  <div>Logged in as {appContext.user?.userName}</div>
+                  <a href="/logout" className={styles.link}>Logout</a>
+                </div>
+              } 
+            </OnClickOutside>,
+            document.body
+          )}
+        </div>
   );
 };
 

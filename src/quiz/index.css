@@ -6,5 +6,8 @@ body {
 
 :root {
   --border: 1px solid #c4c4c4;
+  --colorFont: #111111;
+  --colorPrimary: rgb(223, 103, 50);
+  --colorFontHover: #222222;
   --colorWarning: #e32343;
 }
