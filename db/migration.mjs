@@ -26,9 +26,7 @@ export default async () => {
     });
     const response = await client.send(s3Params);
     const database = await response.Body.transformToString()
-    if (writeToFileSystem) {
-        writeFileSync(targetFileName, database, {encoding: "base64"});
-    }
+    writeFileSync(targetFileName, database, {encoding: "base64"});
   } catch(err) {
 
   }
