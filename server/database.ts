@@ -8,7 +8,9 @@ const databaseUrl = process.env.DATABASE_URL || path.join(__dirname, 'database.d
 
 
 let database;
-getObject(databaseUrl, true).finally(() => {
+getObject(databaseUrl, true).catch(() => {
+  console.log(`Couldn't Retrieve Previous Database`);
+}).finally(() => {
   database = new Database(databaseUrl, (err) => {
     if (err) {
       throw new Error(`Could not start database!!! failed with ${err}`);
