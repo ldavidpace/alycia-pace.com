@@ -1,12 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import cx from "classnames";
+import cx from 'classnames';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {
+  useAppContext,
+} from '~/Utilities/AppContext';
 
-import styles from "./UserDropdown.module.css";
-import { useAppContext } from "../../Utilities/AppContext/contextHooks";
-import OnClickOutside from "../../Utilities/OnClickOutside";
-import useMergeRefs from "../../Utilities/mergeRefs/useMergeRefs";
-import useOnEscape from "../../Utilities/onEscape/useOnEscape";
+import useMergeRefs from '../../Utilities/mergeRefs/useMergeRefs';
+import OnClickOutside from '../../Utilities/OnClickOutside';
+import useOnEscape from '../../Utilities/onEscape/useOnEscape';
+import styles from './UserDropdown.module.css';
+
 
 export type UserDropdownProps = {};
 

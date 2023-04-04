@@ -1,7 +1,10 @@
-import {v4 as uuid} from 'uuid'
-import { getSessionInfo, recordSession } from './sessionMapper';
+import { v4 as uuid } from 'uuid';
+
 // import Keygrip from 'keygrip';
 import { getUserInfo } from './authMapper';
+import {
+  getSessionInfo, recordSession,
+} from './sessionMapper';
 
 
 export const AUTH_HEADER = 'X_SMMOG_AUTHENTICATION';

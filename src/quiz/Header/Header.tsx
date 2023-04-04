@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import {
+  useAppContext,
+} from 'Utilities/AppContext';
 
-import Analytics from "../Analytics";
-import { useAppContext } from '../Utilities/AppContext/contextHooks';
-
-import * as styles from "./Header.module.css"
+import Analytics from '../Analytics';
+import * as styles from './Header.module.css';
 import UserDropdown from './UserDropdown';
+
 
 const Header = () => {
     const context = useAppContext();

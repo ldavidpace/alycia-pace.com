@@ -1,19 +1,20 @@
 import type {Express} from 'express';
+import cookieParser from 'cookie-parser';
 import * as express from 'express';
-
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
+
+import createQuestionAdminEndpoints from './admin/admin';
+import createAuthEndpoints from './auth/auth';
+import {
+  AUTH_HEADER, validateSession,
+} from './auth/sessionUtils';
+import createQuizzesEndpoints from './quizzes/quizzes';
+
 
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
-
-import createQuestionAdminEndpoints from './admin/admin';
-import createAuthEndpoints from './auth/auth';
-import { validateSession, AUTH_HEADER } from './auth/sessionUtils';
-
-
-import cookieParser from "cookie-parser";
 
 const runServer = (app: Express) => {
     // for parsing application/json
@@ -24,7 +25,7 @@ const runServer = (app: Express) => {
     //form-urlencoded
 
     // for parsing multipart/form-data
-    app.use(upload.array()); 
+    app.use(upload.any()); 
 
     app.use(cookieParser());
 
@@ -40,17 +41,20 @@ const runServer = (app: Express) => {
         next();
     })
 
+
+    createQuestionAdminEndpoints(app);
+    createAuthEndpoints(app);
+    createQuizzesEndpoints(app);
+
+    app.use(express.static(__dirname + '/../dist/'));
+
+
     app.use((request, response, next) => {
         if (process.env.NODE_ENV != 'development' && request.headers['x-forwarded-proto'] !== 'https') {
             return response.redirect("https://" + request.headers.host + request.url);
         }
         return next();
     });
-
-    createQuestionAdminEndpoints(app);
-    createAuthEndpoints(app);
-
-    app.use(express.static(__dirname + '/../dist/'));
 
     const sendHTMLFile = (request, response, next) => {
     if (request.hostname.includes('quiz.')) {
@@ -59,10 +63,9 @@ const runServer = (app: Express) => {
         response.sendFile(path.join(path.resolve(__dirname,'../dist/portfolio/index.html')));
     }
     };
+
     app.get('*', sendHTMLFile);
     app.post('*', sendHTMLFile);
-
-
 
 
 }

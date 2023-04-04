@@ -8,7 +8,6 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -16,8 +15,19 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
+    "strict": true,
     "noUnusedLocals": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "baseUrl": ".",
+    "paths": {
+      "AppContext": ["./Utilities/AppContext/index.ts"],
+      "~*": ["./*"],
+      "*": [
+        "./*",
+        "../node_modules/*",
+        "./Utilities/*",
+      ]
+    }
   },
   "exclude": [
     "node_modules",

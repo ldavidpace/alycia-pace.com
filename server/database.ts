@@ -1,14 +1,21 @@
-import { Database } from "sqlite3";
-import { SelectStatementResults, SQLStatementProps } from "./databaseTypes";
 import { readFileSync } from 'fs';
-import { getObject, putObject } from "./s3/s3Client";
+import { Database } from 'sqlite3';
+
+import {
+  SelectStatementResults, SQLStatementProps,
+} from './databaseTypes';
+import {
+  getDatabase, putObject,
+} from './s3/s3Client';
+
+
 import path = require("path");
 
 const databaseUrl = process.env.DATABASE_URL || path.join(__dirname, 'database.db');
 
 
 let database;
-getObject(databaseUrl, true).catch(() => {
+getDatabase(databaseUrl, true).catch(() => {
   console.log(`Couldn't Retrieve Previous Database`);
 }).finally(() => {
   database = new Database(databaseUrl, (err) => {
@@ -60,7 +67,7 @@ export const update = <S extends string>(
     });
   }).then(syncDatabase);
 
-export const get = <S extends string>(sql: S, bindings?: SQLStatementProps<S>) =>
+export const get = <S extends string>(sql: S, bindings?: SQLStatementProps<S>): Promise<any> =>
   new Promise<SelectStatementResults<S>>((resolve, reject) => {
     database.get(sql, prefixBindings(bindings), function (err, row: SelectStatementResults<S>) {
       if (err) {
@@ -70,7 +77,7 @@ export const get = <S extends string>(sql: S, bindings?: SQLStatementProps<S>) =
     });
   });
 
-export const all = <S extends string>(sql: S, bindings?: SQLStatementProps<S>) =>
+export const all = <S extends string>(sql: S, bindings?: SQLStatementProps<S>): Promise<any> =>
   new Promise((resolve, reject) => {
     database.all(sql, prefixBindings(bindings), function (err, rows) {
       if (err) {

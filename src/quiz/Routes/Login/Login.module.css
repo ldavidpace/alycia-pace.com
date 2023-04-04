@@ -15,7 +15,7 @@
     border-radius: 3px;
     max-width: 90%;
     width: 500px;
-    border: var(--border)
+    border: var(--border from global)
 }
 
 .title {
@@ -25,7 +25,7 @@
 }
 
 .error {
-    color: var(--colorWarning);
+    color: var(--colorWarning from global);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -48,7 +48,7 @@
 
 .exclamation:after {
     border-radius: 50%;
-    background-color: var(--colorWarning);
+    background-color: var(--colorWarning from global);
     color: white;
     content: "!";
     width: 20px;

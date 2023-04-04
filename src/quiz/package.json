@@ -1,0 +1,6 @@
+{
+    "name": "alycia-pace_quiz-center",
+    "alias": {
+        "Utilities/**": "./Utilities/$1"
+    }
+}

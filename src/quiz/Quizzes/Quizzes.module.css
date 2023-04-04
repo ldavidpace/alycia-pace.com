@@ -1,3 +1,25 @@
 .container {
     padding: 16px;   
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+
+.quiz {
+    border: var(--border from global);
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+}
+
+.icon {
+    height: 150px;
+    width: 100px;
+}
+.icon img {
+    height: 100%;
+    width: 100%;
 }

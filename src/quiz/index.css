@@ -5,7 +5,9 @@ body {
 }
 
 :root {
-  --border: 1px solid #c4c4c4;
+  --colorBorder: #c4c4c4;
+  --border: 1px solid var(--colorBorder);
+  --dashedBorder: 1px dashed var(--colorBorder);
   --colorFont: #111111;
   --colorPrimary: rgb(223, 103, 50);
   --colorFontHover: #222222;

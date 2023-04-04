@@ -1,0 +1,18 @@
+.button {
+    margin: none;
+    padding-block: 8px;
+    padding-inline: 24px;
+    outline: none;
+    background-color: white;
+    border: var(--border from global);
+}
+
+.primary {
+    background-color: black;
+    color: white;
+}
+
+.primary:hover, .primary:focus {
+    background-color: #232323;
+}
+

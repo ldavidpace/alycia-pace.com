@@ -22,6 +22,12 @@
       "context": "node"
     }
   },
+  "@parcel/transformer-css": {
+    "cssModules": {
+      "dashedIdents": true,
+      "pattern": "[name]-[hash]-[local]"
+    }
+  },
   "scripts": {
     "start": "nodemon dist/server/index.js --watch dist/*",
     "debug": "nodemon --inspect-brk dist/server/index.js --watch dist/*",
@@ -43,6 +49,7 @@
     "@types/pg": "^8.6.6",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/uuid": "^9.0.1",
     "assert": "^2.0.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^5.7.1",
@@ -76,8 +83,10 @@
     "body-parser": "^1.20.2",
     "classnames": "^2.3.2",
     "cookie-parser": "^1.4.6",
+    "cropperjs": "^1.5.13",
     "express": "^4.18.2",
     "history": "^5.3.0",
+    "immer": "^9.0.21",
     "jquery": "^3.6.3",
     "keygrip": "^1.1.0",
     "lodash.isequal": "^4.5.0",
@@ -87,8 +96,10 @@
     "pg-native": "^3.0.1",
     "postgres-migrations": "^5.3.0",
     "react": "^18.2.0",
+    "react-cropper": "^2.3.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
+    "react-transition-group": "^4.4.5",
     "sqlite3": "^5.1.6",
     "uuid": "^9.0.0"
   }

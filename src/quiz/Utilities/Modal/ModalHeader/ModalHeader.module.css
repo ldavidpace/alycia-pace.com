@@ -1,0 +1,6 @@
+.container {
+    border-bottom: var(--border from global);
+    padding-block: 16px;
+    padding-inline: 24px;
+    font-size: 32px;
+}

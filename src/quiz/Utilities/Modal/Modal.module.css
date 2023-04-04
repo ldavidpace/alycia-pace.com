@@ -1,0 +1,81 @@
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.container {
+  background-color: white;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  animation-duration: 0.3s;
+  animation-name: growIn;
+  animation-iteration-count: 1;
+}
+
+.sm {
+  width: 460px;
+}
+
+.md {
+  width: 700px;
+}
+
+.lg {
+  width: 1200px;
+}
+
+
+.leaving {
+  animation-duration: 0.3s;
+  animation-name: shrinkOut;
+  animation-iteration-count: 1;
+}
+
+@keyframes growIn {
+  from {
+    transform: scale(0.01);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shrinkOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0.01);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .leaving {
+    animation-duration: 0.1s;
+  }
+  @keyframes shrinkOut {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1);
+      opacity: 0;
+    }
+  } 
+}

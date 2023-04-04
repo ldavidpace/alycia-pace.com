@@ -1,0 +1,8 @@
+.container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-inline: 24px;
+    padding-block: 8px;
+    border-top: var(--border from global);
+}

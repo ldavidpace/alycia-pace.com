@@ -1,5 +1,6 @@
-import React from 'react';
 import cx from 'classnames';
+import React from 'react';
+
 
 export type OnClickOutsideProps<E extends HTMLElement> = {
     children: (props: {ref: React.Ref<E>}) => React.ReactElement,
@@ -14,7 +15,7 @@ const OnClickOutside = <E extends HTMLElement>({children, onClick, listening = t
         if(listening && ref.current) {
             const checkForClickOutside = (ev: MouseEvent) => {
                 if (ev.target instanceof HTMLElement) {
-                    if (!ev.target.matches(`.${ignoreClassName}`) && ref.current !== ev.target && !ref.current?.contains(ev.target)) {
+                    if ((!ignoreClassName || !ev.target.matches(`.${ignoreClassName}`)) && ref.current !== ev.target && !ref.current?.contains(ev.target)) {
                         onClick(ev);
                     }
                 }

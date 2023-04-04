@@ -1,0 +1,40 @@
+{
+  "importStringConfiguration": {
+    "trailingComma": "multiLine",
+    "tabSize": 2,
+    "tabType": "space",
+    "maximumNumberOfImportExpressionsPerLine": {
+      "count": 50
+    },
+    "numberOfEmptyLinesAfterAllImports": 2
+  },
+  "sortConfiguration": {
+    "customOrderingRules": {
+      "defaultNumberOfEmptyLinesAfterGroup": 1,
+      "rules": [
+        {
+          "regex": "react",
+          "orderLevel": 10,
+          "numberOfEmptyLinesAfterGroup": 1,
+          "disableSort": true
+        },
+        {
+          "regex": "^[^.].*",
+          "order": 20
+        },
+        {
+          "regex": "^[.]",
+          "orderLevel": 40
+        },
+        {
+          "regex": "^.*",
+          "orderLevel": 50
+        },
+        {
+          "regex": "^.*[.]module[.]css$",
+          "orderLevel": 100
+        }
+      ]
+    }
+  }
+}

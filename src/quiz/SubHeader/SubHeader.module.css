@@ -1,5 +1,5 @@
 .container {
-    border-block-end: var(--border);
+    border-block-end: var(--border from global);
     display: flex;
     align-items: center;
     gap: 16px;
@@ -10,7 +10,7 @@
 
 .container a {
     text-decoration: none;
-    color: var(--colorFont);
+    color: var(--colorFont from global);
     display: block;
     height: 100%;
     display: flex;
@@ -20,7 +20,7 @@
 }
 
 a.active {
-    color: var(--colorPrimary);
+    color: var(--colorPrimary from global);
 }
 
 .activeIndicator {
@@ -28,11 +28,11 @@ a.active {
     bottom: 0;
     height: 4px;
     content: "";
-    background-color: var(--colorPrimary);
+    background-color: var(--colorPrimary from global);
     transition: width .3s cubic-bezier(0.075, 0.82, 0.165, 1), left .3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .container a:hover {
     text-decoration: none;
-    color: var(--colorFontHover);
+    color: var(--colorFontHover from global);
 }

@@ -1,24 +1,23 @@
-import * as React from "react";
+import * as React from 'react';
 import {
-  Outlet,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+  createBrowserRouter, Outlet, RouterProvider,
+} from 'react-router-dom';
+import {
+  AppContextProvider, updateContext,
+} from 'Utilities/AppContext';
+import Quiz from '~Quiz';
 
+import Header from '../Header';
+import Quizzes from '../Quizzes';
+import Review from '../Review';
+import CreateAccount from '../Routes/CreateAccount';
+import Login from '../Routes/Login';
 import {
-  getSessionInfo
+  getSessionInfo,
 } from '../service/sessionUtils';
+import SubHeader from '../SubHeader';
+import * as styles from './App.module.css';
 
-import AppContext from "../Utilities/AppContext";
-
-import * as styles from "./App.module.css"
-import Header from "../Header";
-import CreateAccount from "../Routes/CreateAccount";
-import Login from "../Routes/Login";
-import { SessionInfo } from "../Utilities/AppContext/userTypes";
-import SubHeader from "../SubHeader";
-import Quizzes from "../Quizzes";
-import Review from "../Review";
 
 type AppProps = {};
 
@@ -37,6 +36,10 @@ const router = createBrowserRouter([
         
         path: "",
         element: <Quizzes />
+      },
+      {
+        path: "/quiz/:id",
+        element: <Quiz />
       },
       {
         id: "review",
@@ -65,20 +68,18 @@ const router = createBrowserRouter([
 ]);
 
 const App = ({}: AppProps) => {
-  const [context, setContext] = React.useState<SessionInfo>();
   React.useEffect(() => {
     getSessionInfo().then(( user )=>{
-      setContext(user);
+      updateContext((state) => {
+        state.user = user;
+      })
     });
   }, []);
   
-  const contextValue = React.useMemo(() => ({
-    user: context?.user,
-  }) ,[context])
 
-  return <AppContext.Provider value={contextValue}>
+  return <AppContextProvider>
     <RouterProvider router={router} />
-  </AppContext.Provider>;
+  </AppContextProvider>;
 }
 
 export default App;
