@@ -1,4 +1,12 @@
-import { all, get, insert } from '../database';
+import { all, get, insert, update } from '../database';
+
+type Quiz = {
+    id: number,
+    name: string,
+    imageUrl: string,
+    userId: string,
+    type: string,
+};
 
 
 export const createQuiz = (name:string, imageUrl: string, userId: string) => {
@@ -7,15 +15,24 @@ export const createQuiz = (name:string, imageUrl: string, userId: string) => {
     `, {name, imageUrl, userId});
 }
 
-export const getQuizzes = ():Promise<Array<{
-    id: number,
-    name: string,
-    imageUrl: string,
-    userId: string,
-}>> => {
-    return all(`select id, name, imageUrl, userId from quiz`);
+export const updateQuiz = (id: string, quiz: Quiz) => {
+    update(`
+        Update QUIZ set 
+            name = $name,
+            type = $type
+        where id = $id
+    `, {
+        name: quiz.name,
+        type: quiz.type,
+        id: quiz.id,
+    })
+}
+
+export const getQuizzes = ():Promise<Array<Quiz>> => {
+    return all(`select id, name, imageUrl, userId, type from quiz`);
 }
 
 export const getQuizById = (id: string) => {
-    return get(`select id, name, imageUrl, userId from quiz where id = $id`, {id});
+    return get(`select id, name, imageUrl, userId, type from quiz where id = $id`, {id});
 }
+

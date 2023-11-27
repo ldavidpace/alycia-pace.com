@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row-reverse;
     gap: 8px;
     padding-inline: 24px;
     padding-block: 8px;

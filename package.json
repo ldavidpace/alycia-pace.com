@@ -5,6 +5,10 @@
   "engines": {
     "node": ">18.0.0"
   },
+  "parcelServer": {
+    "targetName": "server",
+    "port": "3000"
+  },
   "targets": {
     "portfolio": {
       "source": "src/portfolio/index.html",
@@ -19,6 +23,7 @@
     "server": {
       "source": "server/index.ts",
       "publicUrl": "/server",
+      "includeNodeModules": true,
       "context": "node"
     }
   },
@@ -29,78 +34,23 @@
     }
   },
   "scripts": {
-    "start": "nodemon dist/server/index.js --watch dist/*",
-    "debug": "nodemon --inspect-brk dist/server/index.js --watch dist/*",
+    "start": "npx pm2 start dist/server/index.js",
     "dev": "NODE_ENV=development parcel watch",
     "build": "NODE_ENV=production parcel build",
     "test": "node scripts/test.js --env=jsdom",
     "images": "node ./bin/getPics.js",
-    "release": "node ./scripts/release.mjs"
+    "preinstall": "./scripts/installSubDirectories.sh"
   },
   "devDependencies": {
-    "@parcel/config-default": "^2.8.3",
     "@parcel/packager-raw-url": "^2.8.3",
     "@parcel/transformer-webmanifest": "^2.8.3",
-    "@types/classnames": "^2.3.1",
-    "@types/express": "^4.17.17",
-    "@types/jquery": "^3.5.16",
-    "@types/lodash.isequal": "^4.5.6",
-    "@types/node": "^18.14.6",
-    "@types/pg": "^8.6.6",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@types/uuid": "^9.0.1",
-    "assert": "^2.0.0",
-    "browserify-zlib": "^0.2.0",
-    "buffer": "^5.7.1",
-    "crypto-browserify": "^3.12.0",
-    "events": "^3.3.0",
-    "https-browserify": "^1.0.0",
-    "os-browserify": "^0.3.0",
     "parcel": "^2.8.3",
     "parcel-reporter-express-server": "file:./parcel-reporter-express-server",
-    "path-browserify": "^1.0.1",
-    "postcss": "^8.4.21",
-    "postcss-modules": "^4.3.1",
-    "prettier": "^2.8.4",
-    "process": "^0.11.10",
-    "punycode": "^1.4.1",
-    "querystring-es3": "^0.2.1",
-    "run-p": "^0.0.0",
-    "stream-browserify": "^3.0.0",
-    "stream-http": "^3.2.0",
-    "tty-browserify": "^0.0.1",
-    "typescript": "^4.9.5",
-    "typescript-plugin-css-modules": "^5.0.0",
-    "url": "^0.11.0",
-    "util": "^0.12.5"
+    "process": "^0.11.10"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.303.0",
-    "@parcel/core": "^2.8.3",
-    "argon2": "^0.30.3",
-    "aws-sdk": "^2.1342.0",
-    "body-parser": "^1.20.2",
-    "classnames": "^2.3.2",
-    "cookie-parser": "^1.4.6",
-    "cropperjs": "^1.5.13",
-    "express": "^4.18.2",
-    "history": "^5.3.0",
-    "immer": "^9.0.21",
-    "jquery": "^3.6.3",
-    "keygrip": "^1.1.0",
-    "lodash.isequal": "^4.5.0",
-    "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.21",
-    "pg": "^8.10.0",
-    "pg-native": "^3.0.1",
-    "postgres-migrations": "^5.3.0",
-    "react": "^18.2.0",
-    "react-cropper": "^2.3.2",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.2",
-    "react-transition-group": "^4.4.5",
-    "sqlite3": "^5.1.6",
-    "uuid": "^9.0.0"
+    "mock-aws-s3": "^4.0.2",
+    "nock": "^13.3.0",
+    "pm2": "^5.3.0"
   }
 }

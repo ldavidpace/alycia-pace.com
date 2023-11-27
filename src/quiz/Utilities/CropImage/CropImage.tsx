@@ -1,12 +1,10 @@
-import cx from 'classnames';
 import 'cropperjs/dist/cropper.css';
+
+import cx from 'classnames';
 import React from 'react';
-import Cropper, {
-  ReactCropperElement,
-} from 'react-cropper';
+import Cropper, { ReactCropperElement } from 'react-cropper';
 
 import styles from './CropImage.module.css';
-
 
 export type CropImageProps = {
     cropData?: Cropper.Data,
@@ -27,6 +25,9 @@ const CropImage = ({
 } : CropImageProps) => {
     const [dataUrl, setDataUrl] = React.useState(url);
 
+    React.useEffect(() => {
+        setDataUrl(url);
+    }, [url])
     React.useEffect(() => {
         if (file) {
             const reader = new FileReader();

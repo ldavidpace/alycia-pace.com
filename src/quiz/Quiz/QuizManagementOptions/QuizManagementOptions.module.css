@@ -1,0 +1,8 @@
+.container {
+    padding-block: 8px;
+    display: flex;
+    justify-content: flex-end;
+    padding-inline: 16px;
+    border-block-end: var(--border from global);
+    margin-bottom: 16px;
+}

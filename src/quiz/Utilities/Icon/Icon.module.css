@@ -1,0 +1,11 @@
+.md {
+    height: 32px;
+    width: 32px;
+    display: block;
+}
+
+.pencil {
+    background: url("~Icons/pencil.svg");
+    background-size: contain;
+}
+

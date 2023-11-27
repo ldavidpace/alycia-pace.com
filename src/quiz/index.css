@@ -13,3 +13,8 @@ body {
   --colorFontHover: #222222;
   --colorWarning: #e32343;
 }
+
+
+* {
+  box-sizing: border-box;
+}

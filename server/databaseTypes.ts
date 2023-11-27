@@ -16,18 +16,10 @@ type RecordWithoutWhiteSpace<Key extends string, Value> =
   : Record<Key, Value>
 
 export type FindParam<After extends string> =  
-    After extends `${infer BeforeComma}, ${infer Rest}` ? 
-        (
-          BeforeComma extends `${infer Param} ${infer otherStuff}`
-            ? RecordWithoutWhiteSpace<Param, string | number>
-            : RecordWithoutWhiteSpace<BeforeComma, string | number>
-        ) & SQLStatementProps<Rest>
+    After extends `${infer BeforeComma},${infer Rest}` ? 
+      RecordWithoutWhiteSpace<BeforeComma, string | number> & SQLStatementProps<Rest>
     : After extends `${infer BeforeParen})${infer Rest}`? 
-        (
-          BeforeParen extends `${infer Param} ${infer otherStuff}`
-            ? RecordWithoutWhiteSpace<`${Param}`, string | number>
-            : RecordWithoutWhiteSpace<`${BeforeParen}`, string | number>
-        ) & SQLStatementProps<Rest>
+      RecordWithoutWhiteSpace<`${BeforeParen}`, string | number> & SQLStatementProps<Rest>
     : After extends `${infer BeforeSpace} ${infer Rest}`? 
       RecordWithoutWhiteSpace<`${BeforeSpace}`, string | number> & SQLStatementProps<Rest>
     : After extends `${infer BeforeSemiColon};${infer Rest}` ? 

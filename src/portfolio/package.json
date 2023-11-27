@@ -1,0 +1,21 @@
+{
+    "name": "alycia-pace_portfolio",
+    "alias": {
+        "Utilities/**": "./Utilities/$1"
+    },
+    "devDependencies": {
+        "@types/jquery": "^3.5.16",
+        "cropperjs": "^1.5.13",
+        "history": "^5.3.0"
+    },
+    "dependencies": {
+        "classnames": "^2.3.2",
+        "jquery": "^3.6.4",
+        "lodash.isequal": "^4.5.0",
+        "react": "^18.2.0",
+        "react-cropper": "^2.3.2",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.8.2",
+        "react-transition-group": "^4.4.5"
+    }
+}

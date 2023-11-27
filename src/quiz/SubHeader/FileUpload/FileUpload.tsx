@@ -2,9 +2,9 @@ import cx from 'classnames';
 import React from 'react';
 import useUniqueId from 'Utilities/useUniqueId';
 import Button from '~Utilities/Button';
+import Icon from '~Utilities/Icon/Icon';
 
 import styles from './FileUpload.module.css';
-
 
 export type FileUploadProps = {
     file?: File,
@@ -30,7 +30,7 @@ const FileUpload = ({
 
     return <div>
         <label htmlFor={uniqueId} className={styles.target}>
-            { !file? (<React.Fragment>
+            { !file && !dataUrl? (<React.Fragment>
                 <div>Choose Icon</div>
                 <div>+</div>
                 </React.Fragment>):
@@ -38,6 +38,9 @@ const FileUpload = ({
                     <img className={styles.preview} src={dataUrl}/>
                 )
             }
+            <Button as={'div'}className={styles.editButton} variant={'tight'}>
+                <Icon name={'pencil'}></Icon>
+            </Button>
             <input 
                 id={uniqueId}
                 ref={input} 
@@ -46,10 +49,6 @@ const FileUpload = ({
                 className={styles.input}
             />
         </label>
-        {onStartImageCrop && dataUrl && <Button 
-            onClick={onStartImageCrop}
-        >Crop Icon</Button>}
-        
     </div>
 }
 

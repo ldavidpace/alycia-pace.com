@@ -3,21 +3,33 @@ import React from 'react';
 
 import styles from './Button.module.css';
 
-
 export type ButtonProps = {
   children?: React.ReactNode;
-  variant?: "primary" | "default";
+  variant?: "primary" | "default" | "icon" | "tight";
+  className?: string;
+} & ({
   onClick?: (ev: React.SyntheticEvent<HTMLButtonElement>) => void;
-};
+  as?: 'button' | undefined;
+} | {
+  onClick?: undefined;
+  as: 'div';
+});
 
-const Button = ({ children, variant, onClick }: ButtonProps) => {
+
+const Button = ({as: As = 'button', children, className, variant, onClick }: ButtonProps) => {
+  if (As !== 'button') {
+    return <As
+      className={cx(styles.button, variant && styles[variant], className)}>
+        {children}
+    </As>
+  }
   return (
-    <button
-      className={cx(styles.button, variant && styles[variant])}
+    <As
+      className={cx(styles.button, variant && styles[variant], className)}
       onClick={onClick}
     >
       {children}
-    </button>
+    </As>
   );
 };
 

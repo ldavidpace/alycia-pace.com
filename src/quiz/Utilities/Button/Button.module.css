@@ -3,8 +3,27 @@
     padding-block: 8px;
     padding-inline: 24px;
     outline: none;
-    background-color: white;
+    background-color: rgba(255,255,255, .8);
     border: var(--border from global);
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+
+.button:hover {
+    background-color: rgba(200,200,200, .8);
+}
+
+.button:active {
+    background-color: rgba(100,100,100, .8);
+}
+
+.button:focus {
+    outline: 1px solid #00f;
+}
+
+.default {
+    background-color: white;
 }
 
 .primary {
@@ -16,3 +35,16 @@
     background-color: #232323;
 }
 
+.primary:active {
+    background-color: #111111;
+}
+
+.icon {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.tight {
+    padding: 4px;
+}

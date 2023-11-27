@@ -1,11 +1,11 @@
 import type {Express} from 'express';
 import path = require('path');
+import { hash, verify } from 'argon2';
+
 import { createUserWithPassword, looseGetPassword } from './authMapper';
 import { CreateAccountProps } from './authTypes';
-import {hash, verify} from 'argon2';
-import { AUTH_HEADER, createSession } from './sessionUtils';
 import { updateSessionTimeout } from './sessionMapper';
-
+import { AUTH_HEADER, createSession } from './sessionUtils';
 
 const salt = process.env.SALT || 'mySaltySalt';
 const pepper = process.env.PEPPER || 'mySaltyPepper';

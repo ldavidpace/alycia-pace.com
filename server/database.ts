@@ -1,13 +1,8 @@
 import { readFileSync } from 'fs';
 import { Database } from 'sqlite3';
 
-import {
-  SelectStatementResults, SQLStatementProps,
-} from './databaseTypes';
-import {
-  getDatabase, putObject,
-} from './s3/s3Client';
-
+import { SelectStatementResults, SQLStatementProps } from './databaseTypes';
+import { getDatabase, putObject } from './s3/s3Client';
 
 import path = require("path");
 

@@ -60,7 +60,7 @@ export default async () => {
           console.log(err);
         }
   
-        if (!migration) {
+        if (!migration || (process.env.MigrationForceUpdateNumber != null && filename.startsWith(process.env.MigrationForceUpdateNumber))) {
           await new Promise((resolve, reject) => {
             database.exec(nextSql, (err) => {
               if(err) return reject(err);
@@ -68,6 +68,9 @@ export default async () => {
             });
           });
           try {
+            if (process.env.MigrationForceUpdateNumber != null && filename.startsWith(process.env.MigrationForceUpdateNumber)) {
+              await database.run(`Delete from migrations where migration_name = $filename`, {$filename: filename});
+            }
             await new Promise((resolve, reject) => {
               console.log(`Ran ${filename} with success`);
               database.run(`Insert into migrations (migration_name, sha) values ($filename, $sha)`, {

@@ -2,21 +2,21 @@ import produce from 'immer';
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
 
-
 import type { AppContextStore } from './ContextValue';
 
-const context = React.createContext<AppContextStore>({
-    quizzes: [],
-});
+const defaultQuizState = {
+    quizzes: {},
+    quizQuestions: {},
+};
+
+const context = React.createContext<AppContextStore>(defaultQuizState);
 
 const Provider = context.Provider;
 type ProviderProps = {
     children: React.ReactNode;
 };
 
-let state: AppContextStore = {
-    quizzes: [],
-}
+export let state: AppContextStore = defaultQuizState;
 
 export let updateContext = (update: (value: AppContextStore) => void ) => {
     state = produce(state, update);

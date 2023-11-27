@@ -11,7 +11,6 @@ import Loader from '~Utilities/Loader';
 
 import styles from './CreateQuizModal.module.css';
 
-
 import type { ReactCropperElement } from 'react-cropper';
 const CropImage = React.lazy(() => import("Utilities/CropImage"));
 

@@ -1,6 +1,7 @@
 const {Reporter} = require( '@parcel/plugin');
 const path = require('path');
 const { spawn } = require('node:child_process');
+const fs = require('fs');
 
 let servers = new Map();
 
@@ -17,11 +18,29 @@ module.exports = new Reporter({
                 process.stdout.write(JSON.stringify(options.serveOptions) + '\n');
             }
             
-            const pathToServerIndex = path.resolve(baseDirectory, 'dist', 'server', 'index.js');
+            const packageJSONString = fs.readFileSync(path.resolve(baseDirectory, "package.json"));
+            const packageJSON = JSON.parse(packageJSONString);
 
+            if (!packageJSON.parcelServer) {
+                process.stdout.write("Missing parcel server config")
+                throw new Error("Failed to start parcel server")
+            }
 
-            if (!servers.get(options.serveOptions.port)) {
-                const server = spawn('nodemon', ['--inspect', pathToServerIndex]);
+            if (!packageJSON.parcelServer.targetName) {
+                process.stdout.write("Target name is required")
+                throw new Error("Failed to start parcel server")
+            }
+
+            if (!packageJSON.targets[packageJSON.parcelServer.targetName]) {
+                process.stdout.write(
+                    packageJSON.parcelServer.targetName + "is missing from targets. Choose a valid target for targetName"
+                );
+            }
+
+            const pathToServerIndex = path.resolve(baseDirectory, 'dist', packageJSON.targets[packageJSON.parcelServer.targetName].source);
+            process.stdout.write("Path to server index " + pathToServerIndex);
+            if (!servers.get(packageJSON.parcelServer.port || '3000')) {
+                const server = spawn(`nodemon`, ['--inspect', pathToServerIndex]);
 
                 server.stdout.on('data', (data) => {
                     process.stdout.write(`${data}\n`);
@@ -31,7 +50,7 @@ module.exports = new Reporter({
                     process.stderr.write(`${data}\n`);
                 });
     
-                servers.set(options.serveOptions.port, server);
+                servers.set(packageJSON.parcelServer.port || '3000', server);
             }
         }
         if (event.type === 'watchEnd') {

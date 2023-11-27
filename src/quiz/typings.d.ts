@@ -5,3 +5,9 @@ declare module '*.module.css' {
   const classNames: IClassNames;
   export = classNames;
 }
+
+
+declare module '*.svg' {
+  const url: string;
+  export default url;
+}
