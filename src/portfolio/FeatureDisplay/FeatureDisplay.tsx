@@ -57,7 +57,7 @@ const FeatureDisplay = () => {
     const folder = Images.find(folder => folder.name === params.view)
 
 
-    const files = folder ? folder.contents : Images.reduce((acc, folder) => {
+    const files = folder ? folder.contents : Images.reduce((acc: any, folder) => {
       return [...acc, ...folder.contents];
     }, []);
     return files;

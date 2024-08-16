@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-require('./ContactPage.css')
-const aboutImage = require('../aboutImage.jpeg');
+import aboutImage from '../aboutImage.jpeg';
+import './ContactPage.css';
+
 
 class ContactPage extends React.Component {
   render() {
