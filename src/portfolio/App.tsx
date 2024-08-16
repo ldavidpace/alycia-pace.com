@@ -1,18 +1,16 @@
-import * as React from "react";
+import * as React from 'react';
 import {
-  Outlet,
-  createBrowserRouter,
-  Link,
+  createBrowserRouter, Link, Outlet,
   RouterProvider,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import MainList from "./MainList";
-import Tabs from "./Tabs/Tabs";
-import FeatureDisplay from "./FeatureDisplay";
-import AdminView from "./AdminView";
-import Analytics from "./Analytics";
+import AdminView from './AdminView';
+import Analytics from './Analytics';
+import * as styles from './App.module.css';
+import FeatureDisplay from './FeatureDisplay';
+import MainList from './MainList';
+import Tabs from './Tabs/Tabs';
 
-import * as styles from "./App.module.css"
 
 type AppProps = {};
 
