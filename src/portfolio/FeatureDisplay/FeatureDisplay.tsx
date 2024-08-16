@@ -1,15 +1,17 @@
-import './FeatureDisplay.css';
-
 // import { createPortal } from 'react-dom';
 import * as $ from 'jquery';
 import * as React from 'react';
 // import { parse } from 'qs'
-import { Link, useParams } from 'react-router-dom';
+import {
+  Link, useParams,
+} from 'react-router-dom';
 
 import Analytics from '../Analytics';
-// import PictureShow from '../PictureShow';
-import history from '../history';
 import Images from '../images/javascriptGenImages';
+// import PictureShow from '../PictureShow';
+import history from '../myHistory';
+import './FeatureDisplay.css';
+
 
 const FeatureDisplay = () => {
   const params = useParams<{view: string}>();
