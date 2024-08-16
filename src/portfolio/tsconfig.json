@@ -16,12 +16,6 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "paths": {
-      "*": [
-        "*",
-        "node_modules/*",
-      ]
-    }
   },
   "exclude": [
     "node_modules",
