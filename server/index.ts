@@ -61,6 +61,7 @@ const runServer = (app: Express) => {
 
     const sendHTMLFile = (req: typeof express.request, response, next) => {
         if (!req.headers.accept?.includes('text/html')) return next();
+        console.log('Recieved a request to server req.hostname  -  ' + req.hostname);
         if (req.hostname.includes('quiz.')) {
             response.sendFile(path.resolve(__dirname, '../dist/quiz/index.html'));
         } else {

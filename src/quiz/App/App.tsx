@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import { AppContextProvider, updateContext } from '~/Utilities/AppContext';
+import {
+  createBrowserRouter, Outlet, RouterProvider,
+} from 'react-router-dom';
+import {
+  AppContextProvider, updateContext,
+} from '~/Utilities/AppContext';
 import QuizEdit from '~QuizEdit/QuizEdit';
 
 import Header from '../Header';
@@ -9,10 +13,13 @@ import Quizzes from '../Quizzes';
 import Review from '../Review';
 import CreateAccount from '../Routes/CreateAccount';
 import Login from '../Routes/Login';
-import { getSessionInfo } from '../service/sessionUtils';
+import {
+  getSessionInfo,
+} from '../service/sessionUtils';
 import SubHeader from '../SubHeader';
 import * as styles from './App.module.css';
 import RenderWithRouteParams from './RenderWithRouteParams/RenderWithRouteParams';
+
 
 type AppProps = {};
 
